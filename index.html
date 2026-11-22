@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seções Cônicas 3D</title>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+:root{--bg:#fff;--panel:#f8f9fa;--head:#f1f3f4;--line:#dcdcdc;--soft:#e5e7eb;--text:#202124;--mute:#5f6368;--accent:#1565c0;--mono:ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font:12px -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body{display:flex}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.mono{font-family:var(--mono)}
+#sidebar{position:relative;z-index:20;display:flex;flex-direction:column;width:276px;min-width:276px;height:100%;background:var(--panel);border-right:1px solid var(--line);transition:margin-left .18s}
+#sidebar.collapsed{margin-left:-276px}
+.hdr{display:flex;align-items:center;justify-content:space-between;height:32px;padding:0 12px;background:var(--head);border-bottom:1px solid var(--line);font-weight:600;font-size:11px;color:#3c4043}
+#scroll{flex:1;overflow-y:auto}
+.sec{padding:10px 12px;border-bottom:1px solid var(--line)}
+.presets{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:8px}
+.preset{display:flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid var(--line);border-radius:2px;background:#fff;font-size:11px;text-align:left}
+.preset i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.preset small{margin-left:auto;color:#80868b;font-family:var(--mono)}
+.preset[aria-pressed=true]{background:#e8f0fe;border-color:var(--accent);color:var(--accent);font-weight:600}
+.obj{display:flex;gap:10px;padding:8px 12px;background:#fff;border-bottom:1px solid var(--soft)}
+.obj>div{flex:1;min-width:0}
+.obj .row{display:flex;justify-content:space-between;gap:6px}
+.dot{width:13px;height:13px;margin-top:2px;border-radius:50%;border:2px solid var(--c);background:var(--c);flex-shrink:0;padding:0}
+.dot[aria-pressed=false]{background:transparent}
+.name{font-size:11px;font-weight:500;color:var(--mute)}
+.small{font-size:10px;color:#80868b}
+input[type=text],input[type=number]{height:24px;border:1px solid var(--line);border-radius:2px;background:#fff;color:var(--text);font-size:11px;padding:0 5px;outline:none}
+input[type=text]{width:100%;font-family:var(--mono)}
+input[type=number]{width:58px;text-align:right}
+input:focus{border-color:var(--accent)}
+input.invalid{border-color:#d32f2f;background:#fef2f2}
+.ctl{margin-bottom:10px}
+.ctl:last-child{margin:0}
+.ctl .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;font-size:11.5px}
+.ctl .row>div{display:flex;align-items:center;gap:4px}
+.mini{height:22px;padding:0 6px;border:1px solid var(--line);border-radius:2px;background:#fff;font-size:10px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:#cbd5e1;border-radius:2px;outline-offset:6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--accent)}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--accent)}
+.box{padding:6px 8px;background:var(--panel);border:1px solid var(--soft);border-radius:2px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
+#details div{border-left:2px solid var(--soft);padding-left:8px;margin-top:4px;font:11px/1.35 var(--mono);color:#3c4043}
+.foot{border-top:1px solid var(--line);background:#fff}
+#toggle2d{display:flex;justify-content:space-between;width:100%;height:28px;align-items:center;padding:0 12px;border:0;background:var(--head);font-weight:600;font-size:11px;color:var(--mute)}
+#wrap2d{padding:8px;display:flex;flex-direction:column;align-items:center}
+#wrap2d[hidden]{display:none}
+#c2d{width:228px;height:164px;border:1px solid var(--line)}
+#edge{position:absolute;top:50%;right:-15px;transform:translateY(-50%);width:15px;height:44px;border:1px solid var(--line);border-left:0;border-radius:0 2px 2px 0;background:var(--panel);padding:0}
+main{position:relative;flex:1;min-width:0;height:100%}
+#view{width:100%;height:100%}
+.bar{position:absolute;top:10px;right:10px;z-index:10;display:flex;height:28px;background:#fff;border:1px solid var(--line);border-radius:2px}
+.bar button{border:0;border-left:1px solid var(--line);background:none;padding:0 10px;font-size:11px;font-weight:500}
+.bar button:first-child{border-left:0}
+.bar button[aria-pressed=true]{background:#e8f0fe;color:var(--accent)}
+#err{padding:24px;color:#b91c1c;background:#fef2f2}
+@media(max-width:640px){#sidebar{position:absolute}.bar button{padding:0 7px}}
+</style>
+</head>
+<body>
+<aside id="sidebar">
+  <div id="scroll">
+    <div class="presets">
+      <button class="preset" data-preset="circle" aria-pressed="false" style="--c:#00838f">Circunferência<small>1</small></button>
+      <button class="preset" data-preset="ellipse" aria-pressed="false" style="--c:#1565c0">Elipse<small>2</small></button>
+      <button class="preset" data-preset="parabola" aria-pressed="false" style="--c:#2e7d32">Parábola<small>3</small></button>
+      <button class="preset" data-preset="hyperbola" aria-pressed="false" style="--c:#d84315">Hipérbole<small>4</small></button>
+    </div>
+    <div>
+      <div class="obj"><button class="dot" id="vis-cone" aria-pressed="true" aria-label="Mostrar cone duplo" style="--c:#546e7a"></button>
+        <div><div class="row"><span class="name">Cone duplo</span><span id="badge-h" class="mono small"></span></div><div class="mono">x² + y² = z²</div></div></div>
+      <div class="obj"><button class="dot" id="vis-plane" aria-pressed="true" aria-label="Mostrar plano secante" style="--c:var(--accent)"></button>
+        <div><div class="name" style="margin-bottom:4px">Plano secante</div>
+          <input id="eq" type="text" spellcheck="false" autocomplete="off" aria-label="Equação do plano" title="Ex.: 2x - y + z = 3 | z = 0.5x + 1.5 | 0,5x + 0,866z = 1,2"></div></div>
+      <div class="obj"><button class="dot" id="vis-curve" aria-pressed="true" aria-label="Mostrar curva de interseção" style="--c:var(--accent)"></button>
+        <div><div class="row"><b id="curve-name" style="font-size:11.5px"></b><span id="curve-rel" class="mono small"></span></div>
+          <div id="curve-short" class="mono" style="font-size:11px;color:#3c4043"></div></div></div>
+      <div class="obj"><button class="dot" id="vis-axes" aria-pressed="true" aria-label="Mostrar plano XY e eixos" style="--c:#5f6368"></button>
+        <div><div class="name">Plano XY e eixos</div><div class="mono small"><b style="color:#d32f2f">x</b>, <b style="color:#388e3c">y</b>, <b style="color:#1976d2">z</b> em [−8, 8]</div></div></div>
+    </div>
+    <div class="sec">
+      <div class="ctl"><div class="row"><label for="n-theta">Inclinação Y (θy)</label><div>
+        <button class="mini" id="snap45" title="Fixar 45° (parábola)">45°</button><input id="n-theta" type="number" min="0" max="90" step="0.5">°</div></div>
+        <input id="s-theta" type="range" min="0" max="90" step="0.5" aria-label="Inclinação Y"></div>
+      <div class="ctl"><div class="row"><label for="n-tx">Inclinação X (θx)</label><div><input id="n-tx" type="number" min="-90" max="90" step="0.5">°</div></div>
+        <input id="s-tx" type="range" min="-90" max="90" step="0.5" aria-label="Inclinação X"></div>
+      <div class="ctl"><div class="row"><label for="n-phi">Rotação Z (φz)</label><div><input id="n-phi" type="number" min="-180" max="180" step="1">°</div></div>
+        <input id="s-phi" type="range" min="-180" max="180" step="1" aria-label="Rotação Z"></div>
+      <div class="ctl"><div class="row"><label for="n-p">Deslocamento (p)</label><div>
+        <button class="mini" id="snap0" title="Plano pelo vértice">0</button><input id="n-p" type="number" min="-12" max="12" step="0.05"></div></div>
+        <input id="s-p" type="range" min="-12" max="12" step="0.05" aria-label="Deslocamento p"></div>
+    </div>
+    <div class="sec" style="background:#fff">
+      <div style="display:flex;justify-content:space-between"><b style="font-size:11px;color:var(--mute)">Análise algébrica (u, v)</b><b id="a-type" style="font-size:11px"></b></div>
+      <div class="box" style="margin-top:8px"><div class="small">Equação reduzida no plano secante</div><div id="a-eq" class="mono" style="font-size:11.5px;word-break:break-word"></div></div>
+      <div class="grid2"><div class="box"><div class="small">Excentricidade</div><b id="a-e" class="mono"></b></div><div class="box"><div class="small">Ângulo efetivo</div><b id="a-th" class="mono"></b></div></div>
+      <div id="details"></div>
+    </div>
+  </div>
+  <div class="foot">
+    <button id="toggle2d" aria-expanded="true"><span>Vista 2D no plano (u, v)</span><span id="ico2d">▾</span></button>
+    <div id="wrap2d"><canvas id="c2d" width="228" height="164"></canvas><div id="legend" class="small" style="width:228px;margin-top:4px"></div></div>
+  </div>
+  <button id="edge" title="Ocultar/mostrar painel (H)" aria-label="Ocultar ou mostrar painel">‹</button>
+</aside>
+<main>
+  <div id="view"></div>
+  <div class="bar">
+    <button id="b-rot" aria-pressed="false" title="Rotação automática (Espaço)">Girar (Espaço)</button>
+    <button id="b-reset" title="Restaurar câmera (R)">Resetar (R)</button>
+    <button id="b-panel" title="Painel (H)">Painel (H)</button>
+  </div>
+</main>
+
+<script>
+(function () {
+'use strict';
+const $ = (id) => document.getElementById(id);
+const view = $('view');
+if (typeof THREE === 'undefined' || typeof THREE.OrbitControls !== 'function') {
+  view.innerHTML = '<div id="err"><b>Não foi possível carregar o Three.js.</b><br>Verifique a conexão e recarregue a página.</div>';
+  return;
+}
+
+/* ===== 1. Constantes e utilitários ===== */
+const H_MIN = 6;
+let H = H_MIN;                     // altura do cone e do plano: recalculada a cada atualização
+const GRID = 8, P_MAX = 12;
+const EPS = { p: 1e-3, e: 1e-9, snap: 0.1 };
+const COLORS = {
+  circle: '#00838f', ellipse: '#1565c0', parabola: '#2e7d32', hyperbola: '#d84315', degenerate: '#4b5563'
+};
+const PRESETS = {
+  circle: { theta: 0, tx: 0, phi: 0, p: 2 }, ellipse: { theta: 28, tx: 0, phi: 0, p: 2 },
+  parabola: { theta: 45, tx: 0, phi: 0, p: 1.8 }, hyperbola: { theta: 65, tx: 0, phi: 0, p: 0.8 }
+};
+const state = { theta: 28, tx: 0, phi: 0, p: 2, preset: 'ellipse', show: { cone: 1, plane: 1, curve: 1, axes: 1 }, view2d: true, editingEq: false };
+
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const rad = (d) => d * Math.PI / 180;
+const deg = (r) => r * 180 / Math.PI;
+const fmt = (v, d = 2) => {
+  if (!isFinite(v)) return '∞';
+  const s = v.toFixed(d);
+  return /^-0\.?0*$/.test(s) ? s.slice(1) : s;
+};
+
+/* ===== 2. Modelo puro (sem THREE, sem texto de interface) ===== */
+function classify(absP, e) {
+  if (absP < EPS.p) return 'degenerate';
+  if (e < EPS.e) return 'circle';
+  if (Math.abs(e - 1) < EPS.e) return 'parabola';
+  return e < 1 ? 'ellipse' : 'hyperbola';
+}
+
+/** Normal do plano a partir de Euler 'ZYX' (θx, θy, φz) aplicado a (0,0,1); devolve θ, φ e p efetivos. */
+function effectiveGeometry(st) {
+  const n = new THREE.Vector3(0, 0, 1).applyEuler(new THREE.Euler(rad(st.tx), rad(st.theta), rad(st.phi), 'ZYX')).normalize();
+  let p = st.p;
+  if (n.z < 0) { n.negate(); p = -p; }
+  let theta = deg(Math.acos(clamp(n.z, 0, 1)));
+  if (theta < EPS.snap) theta = 0; else if (Math.abs(theta - 45) < EPS.snap) theta = 45;
+  const phi = Math.hypot(n.x, n.y) > 1e-8 ? deg(Math.atan2(n.y, n.x)) : 0;
+  return { theta, phi, p };
+}
+
+/** Altura do cone (sem teto) para que a cônica apareça inteira em qualquer ângulo. */
+function computeDynamicH(theta, p) {
+  const c = Math.cos(rad(theta)), s = Math.sin(rad(theta)), absP = Math.abs(p);
+  switch (classify(absP, Math.SQRT2 * s)) {
+    case 'degenerate': return H_MIN;
+    case 'circle': case 'ellipse': return Math.max(H_MIN, absP / Math.max(1e-5, c - s) * 1.18);
+    case 'parabola': return Math.max(H_MIN, absP / (2 * c) + Math.max(4.5, absP * 2.5));
+    default: return Math.max(H_MIN, Math.max(absP / (c + s), absP / Math.max(1e-5, s - c)) * 1.25 + 3);
+  }
+}
+
+function arc(fn, t0, t1, n) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) pts.push(fn(t0 + (t1 - t0) * i / n));
+  return pts;
+}
+
+/** Recebe θ, φ (graus) e p; devolve tipo, parâmetros e ramos 2D (u, v) já recortados em |z| ≤ H. */
+function solveModel(thetaDeg, phiDeg, p) {
+  const th = rad(thetaDeg), c = Math.cos(th), s = Math.sin(th);
+  const absP = Math.abs(p), e = Math.SQRT2 * s;
+  const type = classify(absP, e);
+  const m = { type, c, s, p, e, thetaDeg, phi: rad(phiDeg), branches: [], params: {} };
+  const add = (points, closed) => { if (points.length > 1) m.branches.push({ points, closed: !!closed }); };
+
+  if (type === 'degenerate') {
+    const L = Math.SQRT2 * H;
+    if (e < 1 - EPS.e) m.branches.push({ point: true, points: [{ u: 0, v: 0 }] });
+    else if (e < 1 + EPS.e) add([{ u: -L, v: 0 }, { u: L, v: 0 }]);
+    else {
+      const k = Math.sqrt(s * s - c * c), um = H / s;
+      m.params.slope = k;
+      [1, -1].forEach((g) => add([{ u: -um, v: -g * k * um }, { u: um, v: g * k * um }]));
+    }
+    return m;
+  }
+
+  if (type === 'circle') {
+    if (absP <= H) add(arc((t) => ({ u: absP * Math.cos(t), v: absP * Math.sin(t) }), 0, 2 * Math.PI * (1 - 1 / 180), 179), true);
+    m.params = { r: absP };
+    return m;
+  }
+
+  if (type === 'ellipse') {
+    const d = c * c - s * s, u0 = 2 * p * s * c / d, a = absP / d, b = absP / Math.sqrt(d);
+    m.params = { u0, a, b, cf: a * e, dir: a / e };
+    const k = p * c + s * u0, mm = s * a;
+    const lo = Math.max(-1, (-H - k) / mm), hi = Math.min(1, (H - k) / mm);
+    if (lo > hi) return m;
+    const pt = (t) => ({ u: u0 + a * Math.cos(t), v: b * Math.sin(t) });
+    if (lo <= -1 && hi >= 1) add(arc(pt, 0, 2 * Math.PI * (1 - 1 / 240), 239), true);
+    else {
+      const tA = Math.acos(hi), tB = Math.acos(lo);
+      if (hi >= 1) add(arc(pt, -tB, tB, 200));
+      else if (lo <= -1) add(arc(pt, tA, 2 * Math.PI - tA, 200));
+      else { add(arc(pt, tA, tB, 120)); add(arc(pt, -tB, -tA, 120)); }
+    }
+    return m;
+  }
+
+  if (type === 'parabola') {
+    const f = absP / 2, sg = p >= 0 ? 1 : -1, zV = p * c;
+    m.params = { f, sg, pf: absP };
+    const uEnd = sg > 0 ? (H - zV) / s : (-H - zV) / s;
+    if (sg * (uEnd) >= 0 && Math.abs(zV) < H) {
+      add(arc((t) => {
+        const u = uEnd * t * t;
+        return { u, v: (t < 0 ? -1 : 1) * Math.sqrt(Math.max(0, 2 * p * u)) };
+      }, -1, 1, 160));
+    }
+    return m;
+  }
+
+  // hipérbole
+  const D = s * s - c * c, u0 = -2 * p * s * c / D, a = absP / D, b = absP / Math.sqrt(D);
+  m.params = { u0, a, b, cf: a * e, dir: a / e, slope: b / a };
+  const k = p * c + s * u0;
+  [1, -1].forEach((sg) => {
+    const wMax = (sg > 0 ? H - k : H + k) / (s * a);
+    if (wMax < 1) return;
+    const tm = Math.acosh(wMax);
+    add(arc((t) => ({ u: u0 + sg * a * Math.cosh(t), v: b * Math.sinh(t) }), -tm, tm, 200));
+  });
+  return m;
+}
+
+/** (u, v) no plano secante → (x, y, z). Base: n = (s·cosφ, s·sinφ, c). */
+function to3D(u, v, m) {
+  const X = m.p * m.s - u * m.c, Z = m.p * m.c + u * m.s;
+  const cp = Math.cos(m.phi), sp = Math.sin(m.phi);
+  return new THREE.Vector3(X * cp - v * sp, X * sp + v * cp, Z);
+}
+
+/* ===== 3. Apresentação: modelo → texto ===== */
+function centered(u0) { return Math.abs(u0) < 0.005 ? 'u²' : '(u ' + (u0 > 0 ? '− ' : '+ ') + fmt(Math.abs(u0)) + ')²'; }
+
+function describe(m) {
+  const P = m.params, f = fmt;
+  const d = { name: '', rel: '', color: COLORS[m.type], reduced: '', short: '', lines: [], foci: [], verts: [], dirs: [], asym: null, uC: 0, legend: '' };
+  switch (m.type) {
+    case 'degenerate':
+      d.rel = 'p = 0'; d.verts = [{ u: 0, v: 0, l: 'O' }]; d.legend = 'Caso degenerado';
+      if (m.e < 1 - EPS.e) { d.name = 'Degenerada (ponto)'; d.reduced = 'u² + v² = 0'; d.short = 'Ponto (0, 0, 0)'; d.lines = ['Ponto único no vértice do cone']; }
+      else if (m.e < 1 + EPS.e) { d.name = 'Degenerada (reta)'; d.reduced = 'v² = 0'; d.short = 'Reta geratriz (v = 0)'; d.lines = ['Reta geratriz dupla', 'Passa pelo vértice']; }
+      else { d.name = 'Degenerada (par de retas)'; d.reduced = 'v = ±' + f(P.slope) + '·u'; d.short = 'v² − ' + f(P.slope ** 2) + 'u² = 0'; d.lines = ['Retas concorrentes no vértice', 'v = ±' + f(P.slope, 3) + '·u']; }
+      break;
+    case 'circle':
+      d.name = 'Circunferência'; d.rel = 'θ = 0°'; d.reduced = 'u² + v² = ' + f(P.r) + '²'; d.short = 'u² + v² = ' + f(P.r ** 2);
+      d.lines = ['Raio: r = ' + f(P.r, 3), 'Centro: C(0.00, 0.00)', 'Área: πr² = ' + f(Math.PI * P.r ** 2), 'Perímetro: 2πr = ' + f(2 * Math.PI * P.r)];
+      d.verts = [{ u: 0, v: 0, l: 'C' }]; d.legend = 'Centro C';
+      break;
+    case 'ellipse': case 'hyperbola': {
+      const ell = m.type === 'ellipse', { u0, a, b, cf, dir, slope } = P;
+      d.name = ell ? 'Elipse' : 'Hipérbole'; d.rel = ell ? 'θ < 45°' : 'θ > 45°'; d.uC = u0;
+      d.reduced = centered(u0) + '/' + f(a) + '² ' + (ell ? '+' : '−') + ' v²/' + f(b) + '² = 1';
+      d.short = 'a=' + f(a) + ', b=' + f(b) + ', e=' + f(m.e);
+      d.lines = ['Semieixos: a = ' + f(a, 3) + ', b = ' + f(b, 3), 'Dist. focal: c = ' + f(cf, 3) + (ell ? ' (c² = a² − b²)' : ' (c² = a² + b²)'),
+        'Centro: C(' + f(u0) + ', 0.00)', 'Vértices: u = ' + f(u0 - a) + ' ; ' + f(u0 + a), 'Focos: u = ' + f(u0 - cf) + ' ; ' + f(u0 + cf),
+        'Latus rectum: 2b²/a = ' + f(2 * b * b / a, 3)];
+      if (!ell) d.lines.push('Assíntotas: v = ±' + f(slope) + '·(u ' + (u0 > 0 ? '− ' : '+ ') + f(Math.abs(u0)) + ')');
+      d.lines.push('Diretrizes: u = ' + f(u0 - dir) + ' ; ' + f(u0 + dir));
+      d.verts = [{ u: u0 - a, v: 0, l: 'V₁' }, { u: u0 + a, v: 0, l: 'V₂' }];
+      d.foci = [{ u: u0 - cf, v: 0, l: 'F₁' }, { u: u0 + cf, v: 0, l: 'F₂' }];
+      d.dirs = [u0 - dir, u0 + dir];
+      if (!ell) d.asym = { u0, slope };
+      d.legend = ell ? 'Focos, vértices, diretrizes' : 'Focos, vértices, assíntotas, diretrizes';
+      break;
+    }
+    case 'parabola': {
+      const { f: fd, sg, pf } = P;
+      d.name = 'Parábola'; d.rel = 'θ = 45°'; d.reduced = 'v² = ' + (sg < 0 ? '−' : '') + f(2 * pf) + '·u'; d.short = 'v² = ' + (sg < 0 ? '−' : '') + '4(' + f(fd) + ')u';
+      d.lines = ['Parâmetro: p = ' + f(pf, 3), 'Distância focal: f = p/2 = ' + f(fd, 3), 'Vértice: V(0.00, 0.00)', 'Foco: F(' + f(sg * fd) + ', 0.00)', 'Diretriz: u = ' + f(-sg * fd), 'Latus rectum: 2p = ' + f(2 * pf, 3)];
+      d.uC = sg * Math.min(2.5, pf * 0.9); d.verts = [{ u: 0, v: 0, l: 'V' }]; d.foci = [{ u: sg * fd, v: 0, l: 'F' }]; d.dirs = [-sg * fd];
+      d.legend = 'Vértice, foco, diretriz';
+      break;
+    }
+  }
+  return d;
+}
+
+/* ===== 4. Cena Three.js ===== */
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xffffff);
+const DEFAULT_POS = new THREE.Vector3(14, -14, 9.5);
+const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 2000);
+camera.up.set(0, 0, 1);
+camera.position.copy(DEFAULT_POS);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+view.appendChild(renderer.domElement);
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+Object.assign(controls, { enableDamping: true, dampingFactor: 0.08, minDistance: 4, maxDistance: Infinity });
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.88));
+[[14, -10, 20, 0.72], [-16, 12, -10, 0.42]].forEach(([x, y, z, i]) => {
+  const l = new THREE.DirectionalLight(0xffffff, i); l.position.set(x, y, z); scene.add(l);
+});
+
+const axesGroup = new THREE.Group(), coneGroup = new THREE.Group(), planeGroup = new THREE.Group(), curveGroup = new THREE.Group();
+scene.add(axesGroup, coneGroup, planeGroup, curveGroup);
+const line = (pts, mat) => new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), mat);
+
+(function buildAxes() {
+  axesGroup.add(new THREE.Mesh(new THREE.PlaneGeometry(GRID * 2, GRID * 2),
+    new THREE.MeshBasicMaterial({ color: 0xeceff1, transparent: true, opacity: 0.46, side: THREE.DoubleSide, depthWrite: false })));
+  const g = [];
+  for (let i = -GRID; i <= GRID; i++) g.push(new THREE.Vector3(i, -GRID, 0), new THREE.Vector3(i, GRID, 0), new THREE.Vector3(-GRID, i, 0), new THREE.Vector3(GRID, i, 0));
+  axesGroup.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(g), new THREE.LineBasicMaterial({ color: 0xcbd5e1, transparent: true, opacity: 0.78 })));
+  const ext = GRID + 0.5;
+  [[new THREE.Vector3(1, 0, 0), 0xd32f2f, '#d32f2f', 'x'], [new THREE.Vector3(0, 1, 0), 0x388e3c, '#388e3c', 'y'], [new THREE.Vector3(0, 0, 1), 0x1976d2, '#1976d2', 'z']]
+    .forEach(([dir, num, hex, label]) => {
+      axesGroup.add(line([dir.clone().multiplyScalar(-ext), dir.clone().multiplyScalar(ext)], new THREE.LineBasicMaterial({ color: num })));
+      const arrow = new THREE.Mesh(new THREE.ConeGeometry(0.12, 0.42, 16), new THREE.MeshBasicMaterial({ color: num }));
+      arrow.position.copy(dir).multiplyScalar(ext);
+      arrow.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+      axesGroup.add(arrow);
+      const cv = document.createElement('canvas'); cv.width = cv.height = 64;
+      const x = cv.getContext('2d');
+      x.font = 'italic 700 38px Georgia, serif'; x.fillStyle = hex; x.textAlign = x.textBaseline = 'center'; x.textBaseline = 'middle';
+      x.fillText(label, 32, 32);
+      const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), transparent: true, depthTest: false }));
+      sp.scale.set(0.75, 0.75, 0.75); sp.position.copy(dir).multiplyScalar(ext + 0.65);
+      axesGroup.add(sp);
+    });
+})();
+
+(function buildCone() {
+  const mat = new THREE.MeshStandardMaterial({ color: 0x546e7a, roughness: 0.55, metalness: 0.05, transparent: true, opacity: 0.21, side: THREE.DoubleSide, depthWrite: false });
+  [[-Math.PI / 2, 0.5], [Math.PI / 2, -0.5]].forEach(([rx, tz]) => {
+    const geo = new THREE.ConeGeometry(1, 1, 84, 1, true);
+    geo.rotateX(rx); geo.translate(0, 0, tz);
+    coneGroup.add(new THREE.Mesh(geo, mat));
+  });
+  const rim = new THREE.LineBasicMaterial({ color: 0x546e7a, transparent: true, opacity: 0.62 });
+  [1, -1].forEach((z) => coneGroup.add(line(arc((t) => new THREE.Vector3(Math.cos(t), Math.sin(t), z), 0, 2 * Math.PI, 96), rim)));
+  const gen = new THREE.LineBasicMaterial({ color: 0x607d8b, transparent: true, opacity: 0.24 });
+  for (let j = 0; j < 8; j++) {
+    const a = j / 8 * Math.PI;
+    coneGroup.add(line([new THREE.Vector3(-Math.cos(a), -Math.sin(a), -1), new THREE.Vector3(Math.cos(a), Math.sin(a), 1)], gen));
+  }
+})();
+
+const planeFill = new THREE.MeshBasicMaterial({ color: 0x1565c0, transparent: true, opacity: 0.19, side: THREE.DoubleSide, depthWrite: false });
+const planeEdge = new THREE.LineBasicMaterial({ color: 0x1565c0, transparent: true, opacity: 0.72 });
+planeGroup.add(new THREE.Mesh(new THREE.PlaneGeometry(1, 1), planeFill));
+planeGroup.add(line([[-.5, -.5], [.5, -.5], [.5, .5], [-.5, .5], [-.5, -.5]].map(([x, y]) => new THREE.Vector3(x, y, 0)), planeEdge));
+
+
+const curveMat = new THREE.MeshBasicMaterial({ color: 0x1565c0 });
+function rebuildCurve(m) {
+  while (curveGroup.children.length) {
+    const ch = curveGroup.children[0];
+    curveGroup.remove(ch); ch.geometry.dispose();
+  }
+  for (const br of m.branches) {
+    if (br.point) {
+      const sp = new THREE.Mesh(new THREE.SphereGeometry(Math.max(0.14, H * 0.015), 20, 20), curveMat);
+      curveGroup.add(sp); continue;
+    }
+    const pts = [];
+    for (const q of br.points) {
+      const v = to3D(q.u, q.v, m);
+      if (isFinite(v.x + v.y + v.z) && (!pts.length || v.distanceTo(pts[pts.length - 1]) > 1e-4)) pts.push(v);
+    }
+    if (pts.length < 2) continue;
+    const curve = pts.length === 2 ? new THREE.LineCurve3(pts[0], pts[1]) : new THREE.CatmullRomCurve3(pts, br.closed, 'centripetal');
+    curveGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve, clamp(pts.length, 24, 200), Math.max(0.065, H * 0.0075), 10, br.closed), curveMat));
+  }
+}
+
+/* ===== 5. Vista 2D ===== */
+const c2d = $('c2d'), ctx = c2d.getContext('2d');
+function draw2D(m, d) {
+  if (!state.view2d) return;
+  const W = 228, Hh = 164, dpr = Math.min(devicePixelRatio || 1, 2);
+  if (c2d.width !== W * dpr) { c2d.width = W * dpr; c2d.height = Hh * dpr; }
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, Hh);
+
+  let umin = d.uC - 3.2, umax = d.uC + 3.2, vmax = 2.4;
+  m.branches.forEach((b) => b.points.forEach((q) => {
+    if (!isFinite(q.u + q.v)) return;
+    umin = Math.min(umin, q.u); umax = Math.max(umax, q.u); vmax = Math.max(vmax, Math.abs(q.v));
+  }));
+  const uc = (umin + umax) / 2;
+  const scale = Math.min((W * 0.44) / ((umax - umin) / 2 * 1.15), (Hh * 0.44) / (vmax * 1.15), 26);
+  const px = (u, v) => [W / 2 + (u - uc) * scale, Hh / 2 - v * scale];
+
+  const raw = 28 / scale, mag = Math.pow(10, Math.floor(Math.log10(raw))), n = raw / mag;
+  const step = mag * (n < 1.5 ? 1 : n < 3.5 ? 2 : n < 7.5 ? 5 : 10);
+  ctx.strokeStyle = '#eceff1'; ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let u = Math.floor((uc - W / 2 / scale) / step) * step; u <= uc + W / 2 / scale; u += step) { const x = px(u, 0)[0]; ctx.moveTo(x, 0); ctx.lineTo(x, Hh); }
+  for (let v = Math.floor(-Hh / 2 / scale / step) * step; v <= Hh / 2 / scale; v += step) { const y = px(0, v)[1]; ctx.moveTo(0, y); ctx.lineTo(W, y); }
+  ctx.stroke();
+
+  ctx.strokeStyle = '#9aa0a6';
+  const o = px(0, 0);
+  ctx.beginPath(); ctx.moveTo(0, o[1]); ctx.lineTo(W, o[1]);
+  if (o[0] >= 0 && o[0] <= W) { ctx.moveTo(o[0], 0); ctx.lineTo(o[0], Hh); }
+  ctx.stroke();
+
+  ctx.save(); ctx.setLineDash([3, 3]); ctx.strokeStyle = '#6b7280';
+  d.dirs.forEach((u) => { const x = px(u, 0)[0]; if (x > 2 && x < W - 2) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, Hh); ctx.stroke(); } });
+  if (d.asym) {
+    const span = (umax - umin) * 2 + 10;
+    [1, -1].forEach((g) => {
+      const a = px(d.asym.u0 - span, -g * d.asym.slope * span), b = px(d.asym.u0 + span, g * d.asym.slope * span);
+      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+    });
+  }
+  ctx.restore();
+
+  ctx.strokeStyle = ctx.fillStyle = d.color; ctx.lineWidth = 2;
+  m.branches.forEach((b) => {
+    if (b.point) { const q = px(0, 0); ctx.beginPath(); ctx.arc(q[0], q[1], 3.5, 0, 7); ctx.fill(); return; }
+    ctx.beginPath();
+    b.points.forEach((q, i) => { const a = px(q.u, q.v); i ? ctx.lineTo(a[0], a[1]) : ctx.moveTo(a[0], a[1]); });
+    if (b.closed) ctx.closePath();
+    ctx.stroke();
+  });
+  const dot = (q, color) => {
+    const a = px(q.u, q.v);
+    if (a[0] < 4 || a[0] > W - 4 || a[1] < 4 || a[1] > Hh - 4) return;
+    ctx.fillStyle = color; ctx.beginPath(); ctx.arc(a[0], a[1], 2.7, 0, 7); ctx.fill();
+    ctx.font = '600 9.5px ui-monospace, monospace'; ctx.fillStyle = '#202124'; ctx.fillText(q.l, a[0] + 4, a[1] - 4);
+  };
+  d.verts.forEach((q) => dot(q, '#4b5563'));
+  d.foci.forEach((q) => dot(q, d.color));
+}
+
+/* ===== 6. Atualização em quatro etapas, agendada por dirty flag ===== */
+const el = {
+  eq: $('eq'), presets: document.querySelectorAll('.preset'),
+  num: { theta: $('n-theta'), tx: $('n-tx'), phi: $('n-phi'), p: $('n-p') },
+  sld: { theta: $('s-theta'), tx: $('s-tx'), phi: $('s-phi'), p: $('s-p') }
+};
+let needsRender = true, dirty = false;
+const requestRender = () => { needsRender = true; };
+function requestUpdate() {
+  if (dirty) return;
+  dirty = true;
+  requestAnimationFrame(() => { dirty = false; updateAll(); });
+}
+
+function planeEquationText(m) {
+  const n = [m.s * Math.cos(m.phi), m.s * Math.sin(m.phi), m.c], names = ['x', 'y', 'z'];
+  const terms = [];
+  n.forEach((k, i) => {
+    if (Math.abs(k) < 0.001) return;
+    const a = Math.abs(k), coef = Math.abs(a - 1) < 0.001 ? '' : a.toFixed(3);
+    terms.push(terms.length ? (k < 0 ? ' − ' : ' + ') + coef + names[i] : (k < 0 ? '−' : '') + coef + names[i]);
+  });
+  return (terms.join('') || '0') + ' = ' + fmt(m.p);
+}
+
+function updateScene(m, d) {
+  const n = new THREE.Vector3(m.s * Math.cos(m.phi), m.s * Math.sin(m.phi), m.c);
+  planeGroup.position.copy(n).multiplyScalar(m.p);
+  planeGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), n);
+  coneGroup.scale.set(H, H, H);
+  const size = Math.max(12, 3.4 * H + 2 * Math.abs(m.p));
+  planeGroup.scale.set(size, size, 1);
+  planeFill.color.set(d.color); planeEdge.color.set(d.color); curveMat.color.set(d.color);
+  coneGroup.visible = !!state.show.cone; planeGroup.visible = !!state.show.plane;
+  curveGroup.visible = !!state.show.curve; axesGroup.visible = !!state.show.axes;
+  rebuildCurve(m);
+  requestRender();
+}
+
+function updateUI(m, d) {
+  document.documentElement.style.setProperty('--accent', d.color);
+  ['cone', 'plane', 'curve', 'axes'].forEach((k) => $('vis-' + k).setAttribute('aria-pressed', state.show[k] ? 'true' : 'false'));
+  if (!state.editingEq) { el.eq.value = planeEquationText(m); el.eq.classList.remove('invalid'); }
+  $('curve-name').textContent = $('a-type').textContent = d.name;
+  $('curve-name').style.color = $('a-type').style.color = d.color;
+  $('curve-rel').textContent = d.rel;
+  $('curve-short').textContent = d.short;
+  $('a-eq').textContent = d.reduced;
+  $('a-e').textContent = 'e = ' + fmt(m.e, 3);
+  $('a-th').textContent = 'θ = ' + fmt(m.thetaDeg, 1) + '°';
+  $('legend').textContent = d.legend;
+  for (const k of ['theta', 'tx', 'phi', 'p']) {
+    if (document.activeElement !== el.num[k]) el.num[k].value = Number(state[k].toFixed(2));
+    el.sld[k].value = state[k];
+  }
+  el.sld.theta.setAttribute('aria-valuetext', fmt(state.theta, 1) + ' graus');
+  el.presets.forEach((b) => b.setAttribute('aria-pressed', b.dataset.preset === state.preset ? 'true' : 'false'));
+  const box = $('details'); box.textContent = '';
+  d.lines.forEach((t) => { const r = document.createElement('div'); r.textContent = t; box.appendChild(r); });
+}
+
+/* Três alturas: Htarget (alvo), Hshow (cone/plano exibidos) e Hcam (enquadramento da câmera).
+   O cone cresce rápido e a câmera recua devagar, então a figura cresce na tela em vez de a grade encolher. */
+let Htarget = H_MIN, Hshow = H_MIN, Hcam = H_MIN, lastGeom = null;
+const camScale = (h) => Math.max(1, h / H_MIN) * (1 + 0.3 * (1 - H_MIN / Math.max(h, H_MIN))); // 0.3 = folga extra da viewport
+const easeLog = (cur, tgt, k) => (Math.abs(Math.log(tgt / cur)) < 1e-3 ? tgt : cur * Math.pow(tgt / cur, k));
+
+function updateCameraClip() {
+  const dist = camera.position.distanceTo(controls.target);
+  const far = Math.max(2000, Htarget * 15, dist * 15), near = Math.max(0.1, Math.min(2, dist * 0.001));
+  if (Math.abs(camera.far - far) > camera.far * 0.05 || Math.abs(camera.near - near) > camera.near * 0.05) {
+    camera.near = near; camera.far = far; camera.updateProjectionMatrix(); requestRender();
+  }
+}
+
+function refreshScene() {
+  H = Hshow;
+  const m = solveModel(lastGeom.theta, lastGeom.phi, lastGeom.p);
+  updateScene(m, describe(m));
+}
+
+function stepAnimation() {
+  if (!lastGeom) return;
+  if (Hshow !== Htarget) { Hshow = easeLog(Hshow, Htarget, 0.16); refreshScene(); }
+  if (Hcam !== Htarget) {
+    const before = camScale(Hcam);
+    Hcam = easeLog(Hcam, Htarget, 0.07);
+    const off = camera.position.clone().sub(controls.target);
+    if (off.lengthSq() > 1e-8) {
+      off.setLength(Math.max(controls.minDistance, off.length() * camScale(Hcam) / before));
+      camera.position.copy(controls.target).add(off);
+      controls.update();
+    }
+  }
+}
+
+function updateAll() {
+  lastGeom = effectiveGeometry(state);
+  Htarget = computeDynamicH(lastGeom.theta, lastGeom.p);
+  controls.zoomSpeed = controls.panSpeed = 1 + Math.log10(Math.max(1, Htarget / H_MIN)) * 1.4;
+  $('badge-h').textContent = 'H = ' + Htarget.toFixed(1);
+  refreshScene();                       // cena na altura animada
+  H = Htarget;                          // painel e vista 2D usam a altura final
+  const m = solveModel(lastGeom.theta, lastGeom.phi, lastGeom.p), d = describe(m);
+  updateUI(m, d); draw2D(m, d);
+}
+
+/* ===== 7. Eventos ===== */
+const LIMITS = { theta: [0, 90], tx: [-90, 90], phi: [-180, 180], p: [-P_MAX, P_MAX] };
+
+function setParam(k, v) {
+  if (!isFinite(v)) return requestUpdate();
+  v = clamp(v, ...LIMITS[k]);
+  state[k] = v;
+  state.preset = null;
+  requestUpdate();
+}
+for (const k of ['theta', 'tx', 'phi', 'p']) {
+  el.sld[k].addEventListener('input', () => setParam(k, parseFloat(el.sld[k].value)));
+  el.num[k].addEventListener('change', () => setParam(k, parseFloat(el.num[k].value)));
+  el.num[k].addEventListener('keydown', (e) => { if (e.key === 'Enter') el.num[k].blur(); });
+}
+
+function applyPreset(key) { Object.assign(state, PRESETS[key], { preset: key }); requestUpdate(); }
+el.presets.forEach((b) => b.addEventListener('click', () => applyPreset(b.dataset.preset)));
+$('snap45').addEventListener('click', () => { state.theta = 45; state.tx = 0; state.preset = null; if (Math.abs(state.p) < 0.05) state.p = 1.8; requestUpdate(); });
+$('snap0').addEventListener('click', () => { state.p = 0; state.preset = null; requestUpdate(); });
+['cone', 'plane', 'curve', 'axes'].forEach((k) => $('vis-' + k).addEventListener('click', () => { state.show[k] = state.show[k] ? 0 : 1; requestUpdate(); }));
+
+/** Aceita "2x - y + z = 3", "z = 0.5x + 1.5", "0,5x + 0,866z = 1,2". */
+function parsePlane(raw) {
+  const s = raw.replace(/,/g, '.').replace(/−/g, '-').replace(/\s+/g, '').toLowerCase();
+  const sides = s.split('=');
+  if (sides.length !== 2 || !sides[0] || !sides[1]) return null;
+  const side = (expr) => {
+    const co = { x: 0, y: 0, z: 0, c: 0 }, re = /([+-]?)(\d*\.?\d*)\*?([xyz])?/y;
+    let i = 0;
+    while (i < expr.length) {
+      re.lastIndex = i;
+      const r = re.exec(expr);
+      if (!r || r[0] === '' || (!r[2] && !r[3]) || (i > 0 && !r[1])) return null;
+      const val = r[2] ? parseFloat(r[2]) : 1;
+      if (!isFinite(val)) return null;
+      co[r[3] || 'c'] += (r[1] === '-' ? -1 : 1) * val;
+      i = re.lastIndex;
+    }
+    return co;
+  };
+  const L = side(sides[0]), R = side(sides[1]);
+  if (!L || !R) return null;
+  let A = L.x - R.x, B = L.y - R.y, C = L.z - R.z, D = R.c - L.c;
+  const norm = Math.hypot(A, B, C);
+  if (norm < 1e-8) return null;
+  A /= norm; B /= norm; C /= norm; D /= norm;
+  if (C < 0) { A = -A; B = -B; C = -C; D = -D; }
+  return { nx: A, ny: B, nz: C, p: D };
+}
+el.eq.addEventListener('focus', () => { state.editingEq = true; });
+el.eq.addEventListener('blur', () => { state.editingEq = false; requestUpdate(); });
+el.eq.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const r = parsePlane(el.eq.value);
+    if (!r) return el.eq.classList.add('invalid');
+    state.theta = deg(Math.acos(clamp(r.nz, 0, 1))); state.tx = 0;
+    state.phi = Math.hypot(r.nx, r.ny) > 1e-7 ? deg(Math.atan2(r.ny, r.nx)) : 0;
+    state.p = clamp(r.p, -P_MAX, P_MAX); state.preset = null;
+    el.eq.blur();
+  } else if (e.key === 'Escape') el.eq.blur();
+});
+
+const sidebar = $('sidebar');
+function toggleSidebar() {
+  const c = sidebar.classList.toggle('collapsed');
+  $('edge').textContent = c ? '›' : '‹';
+}
+$('edge').addEventListener('click', toggleSidebar);
+$('b-panel').addEventListener('click', toggleSidebar);
+if (innerWidth < 640) toggleSidebar();
+
+$('toggle2d').addEventListener('click', () => {
+  state.view2d = !state.view2d;
+  $('wrap2d').hidden = !state.view2d;
+  $('ico2d').textContent = state.view2d ? '▾' : '▸';
+  $('toggle2d').setAttribute('aria-expanded', String(state.view2d));
+  requestUpdate();
+});
+
+function toggleRotate() {
+  controls.autoRotate = !controls.autoRotate;
+  $('b-rot').setAttribute('aria-pressed', String(controls.autoRotate));
+}
+function resetCamera() { camera.position.copy(DEFAULT_POS).multiplyScalar(camScale(Hcam)); controls.target.set(0, 0, 0); controls.update(); requestRender(); }
+$('b-rot').addEventListener('click', toggleRotate);
+$('b-reset').addEventListener('click', resetCamera);
+
+window.addEventListener('keydown', (e) => {
+  const t = e.target;
+  if (t.matches('input[type="text"], input[type="number"], textarea, select')) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const map = { 1: 'circle', 2: 'ellipse', 3: 'parabola', 4: 'hyperbola' };
+  if (map[e.key]) applyPreset(map[e.key]);
+  else if (e.code === 'Space' && !t.closest('button')) { e.preventDefault(); toggleRotate(); }
+  else if (e.key.toLowerCase() === 'r') resetCamera();
+  else if (e.key.toLowerCase() === 'h') toggleSidebar();
+});
+
+function resize() {
+  const w = view.clientWidth, h = view.clientHeight;
+  if (!w || !h) return;
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+  renderer.setSize(w, h); requestRender();
+}
+new ResizeObserver(resize).observe(view);
+controls.addEventListener('change', requestRender);
+
+/* ===== 8. Loop: só desenha quando algo mudou ===== */
+(function loop() {
+  requestAnimationFrame(loop);
+  stepAnimation();
+  const moved = controls.update();
+  updateCameraClip();
+  if (moved || needsRender) { renderer.render(scene, camera); needsRender = false; }
+})();
+
+resize();
+updateAll();
+})();
+</script>
+</body>
+</html>
