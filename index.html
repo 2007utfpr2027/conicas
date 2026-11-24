@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Superfícies Cônicas 3D — Calculadora Gráfica</title>
 
-  <!-- Tailwind CSS via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS 3.4.17 compilado e embutido (sem CDN) -->
+  <style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.-right-\[14px\]{right:-14px}.bottom-10{bottom:2.5rem}.left-2\.5{left:.625rem}.right-2{right:.5rem}.right-2\.5{right:.625rem}.top-1\/2{top:50%}.top-2{top:.5rem}.z-10{z-index:10}.z-20{z-index:20}.z-30{z-index:30}.mb-1{margin-bottom:.25rem}.ml-1{margin-left:.25rem}.mt-1{margin-top:.25rem}.block{display:block}.inline{display:inline}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-5{height:1.25rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[20px\]{height:20px}.h-\[21px\]{height:21px}.h-\[24px\]{height:24px}.h-\[26px\]{height:26px}.h-\[28px\]{height:28px}.h-full{height:100%}.max-h-\[300px\]{max-height:300px}.min-h-0{min-height:0}.w-2{width:.5rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-\[14px\]{width:14px}.w-\[260px\]{width:260px}.w-\[26px\]{width:26px}.w-full{width:100%}.min-w-0{min-width:0}.min-w-\[50px\]{min-width:50px}.max-w-\[calc\(100\%-16px\)\]{max-width:calc(100% - 16px)}.flex-1{flex:1 1 0%}.flex-shrink{flex-shrink:1}.shrink-0{flex-shrink:0}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-0\.5{gap:.125rem}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.space-y-0\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.125rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.125rem*var(--tw-space-y-reverse))}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-2\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.625rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.625rem*var(--tw-space-y-reverse))}.divide-x>:not([hidden])~:not([hidden]){--tw-divide-x-reverse:0;border-right-width:calc(1px*var(--tw-divide-x-reverse));border-left-width:calc(1px*(1 - var(--tw-divide-x-reverse)))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-\[\#DCDCDC\]>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(220 220 220/var(--tw-divide-opacity,1))}.divide-\[\#F1F3F4\]>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(241 243 244/var(--tw-divide-opacity,1))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-words{overflow-wrap:break-word}.rounded-\[2px\]{border-radius:2px}.rounded-r-\[2px\]{border-top-right-radius:2px;border-bottom-right-radius:2px}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-l-0{border-left-width:0}.border-l-2{border-left-width:2px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-\[\#1565C0\]{--tw-border-opacity:1;border-color:rgb(21 101 192/var(--tw-border-opacity,1))}.border-\[\#3C4043\]{--tw-border-opacity:1;border-color:rgb(60 64 67/var(--tw-border-opacity,1))}.border-\[\#D1D5DB\]{--tw-border-opacity:1;border-color:rgb(209 213 219/var(--tw-border-opacity,1))}.border-\[\#DCDCDC\]{--tw-border-opacity:1;border-color:rgb(220 220 220/var(--tw-border-opacity,1))}.border-\[\#ECEFF1\]{--tw-border-opacity:1;border-color:rgb(236 239 241/var(--tw-border-opacity,1))}.border-transparent{border-color:transparent}.bg-\[\#E8F0FE\]{--tw-bg-opacity:1;background-color:rgb(232 240 254/var(--tw-bg-opacity,1))}.bg-\[\#ECEFF1\]{--tw-bg-opacity:1;background-color:rgb(236 239 241/var(--tw-bg-opacity,1))}.bg-\[\#F1F3F4\]{--tw-bg-opacity:1;background-color:rgb(241 243 244/var(--tw-bg-opacity,1))}.bg-\[\#F3E5F5\]{--tw-bg-opacity:1;background-color:rgb(243 229 245/var(--tw-bg-opacity,1))}.bg-\[\#F8F9FA\]{--tw-bg-opacity:1;background-color:rgb(248 249 250/var(--tw-bg-opacity,1))}.bg-\[\#FEF2F2\]{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.p-2{padding:.5rem}.p-2\.5{padding:.625rem}.p-6{padding:1.5rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.pb-0\.5{padding-bottom:.125rem}.pb-2\.5{padding-bottom:.625rem}.pl-1\.5{padding-left:.375rem}.pl-2{padding-left:.5rem}.pl-5{padding-left:1.25rem}.pt-0\.5{padding-top:.125rem}.pt-1\.5{padding-top:.375rem}.text-left{text-align:left}.text-center{text-align:center}.text-\[10\.5px\]{font-size:10.5px}.text-\[10px\]{font-size:10px}.text-\[11\.5px\]{font-size:11.5px}.text-\[11px\]{font-size:11px}.text-\[13px\]{font-size:13px}.text-\[9\.5px\]{font-size:9.5px}.text-\[9px\]{font-size:9px}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.tracking-wide{letter-spacing:.025em}.text-\[\#00838F\]{--tw-text-opacity:1;color:rgb(0 131 143/var(--tw-text-opacity,1))}.text-\[\#1565C0\]{--tw-text-opacity:1;color:rgb(21 101 192/var(--tw-text-opacity,1))}.text-\[\#202124\]{--tw-text-opacity:1;color:rgb(32 33 36/var(--tw-text-opacity,1))}.text-\[\#2E7D32\]{--tw-text-opacity:1;color:rgb(46 125 50/var(--tw-text-opacity,1))}.text-\[\#3C4043\]{--tw-text-opacity:1;color:rgb(60 64 67/var(--tw-text-opacity,1))}.text-\[\#546E7A\]{--tw-text-opacity:1;color:rgb(84 110 122/var(--tw-text-opacity,1))}.text-\[\#5F6368\]{--tw-text-opacity:1;color:rgb(95 99 104/var(--tw-text-opacity,1))}.text-\[\#70757A\]{--tw-text-opacity:1;color:rgb(112 117 122/var(--tw-text-opacity,1))}.text-\[\#7B1FA2\]{--tw-text-opacity:1;color:rgb(123 31 162/var(--tw-text-opacity,1))}.text-\[\#80868B\]{--tw-text-opacity:1;color:rgb(128 134 139/var(--tw-text-opacity,1))}.text-\[\#B91C1C\]{--tw-text-opacity:1;color:rgb(185 28 28/var(--tw-text-opacity,1))}.text-\[\#D32F2F\]{--tw-text-opacity:1;color:rgb(211 47 47/var(--tw-text-opacity,1))}.text-\[\#D84315\]{--tw-text-opacity:1;color:rgb(216 67 21/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.outline-none{outline:2px solid transparent;outline-offset:2px}.outline{outline-style:solid}.blur{--tw-blur:blur(8px)}.blur,.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-\[\#E8EAED\]:hover{--tw-bg-opacity:1;background-color:rgb(232 234 237/var(--tw-bg-opacity,1))}.hover\:bg-\[\#E8F0FE\]:hover{--tw-bg-opacity:1;background-color:rgb(232 240 254/var(--tw-bg-opacity,1))}.hover\:bg-\[\#F1F3F4\]:hover{--tw-bg-opacity:1;background-color:rgb(241 243 244/var(--tw-bg-opacity,1))}.hover\:bg-\[\#F8F9FA\]:hover{--tw-bg-opacity:1;background-color:rgb(248 249 250/var(--tw-bg-opacity,1))}.hover\:bg-\[\#FEF2F2\]:hover{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.hover\:text-\[\#D32F2F\]:hover{--tw-text-opacity:1;color:rgb(211 47 47/var(--tw-text-opacity,1))}.focus\:border-\[\#1565C0\]:focus{--tw-border-opacity:1;border-color:rgb(21 101 192/var(--tw-border-opacity,1))}</style>
 
   <!-- Three.js r128 UMD e OrbitControls clássico via jsDelivr -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
@@ -32,14 +32,14 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    /* Painel lateral esquerdo (292px, retrátil) */
+    /* Painel lateral esquerdo (300px, retrátil) */
     #sidebar {
-      width: 292px;
-      min-width: 292px;
+      width: 300px;
+      min-width: 300px;
       transition: margin-left 0.16s ease;
     }
     #sidebar.collapsed {
-      margin-left: -292px;
+      margin-left: -300px;
     }
 
     /* Sliders finos estilo GeoGebra */
@@ -243,11 +243,12 @@
                 <button data-axis="y" type="button" class="axis-btn px-1.5 h-[21px] text-[10px] text-[#3C4043] hover:bg-[#F1F3F4]">Oy</button>
                 <button data-axis="z" type="button" class="axis-btn px-1.5 h-[21px] text-[10px] text-[#3C4043] hover:bg-[#F1F3F4]">Oz</button>
               </div>
-              <div class="grid grid-cols-4 gap-1 flex-1">
-                <button data-cpreset="circ" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[10px] text-[#3C4043] hover:bg-[#F1F3F4]">Circ.</button>
-                <button data-cpreset="ellip" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[10px] text-[#3C4043] hover:bg-[#F1F3F4]">Elíp.</button>
-                <button data-cpreset="axisy" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[10px] text-[#3C4043] hover:bg-[#F1F3F4]">Eixo Y</button>
-                <button data-cpreset="shift" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[10px] text-[#3C4043] hover:bg-[#F1F3F4]">Desloc.</button>
+              <div class="grid grid-cols-5 gap-0.5 flex-1">
+                <button data-cpreset="circ" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[9.5px] text-[#3C4043] hover:bg-[#F1F3F4]">Circ.</button>
+                <button data-cpreset="ellip" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[9.5px] text-[#3C4043] hover:bg-[#F1F3F4]">Elíp.</button>
+                <button data-cpreset="axisy" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[9.5px] text-[#3C4043] hover:bg-[#F1F3F4]">Oy</button>
+                <button data-cpreset="axisx" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[9.5px] text-[#3C4043] hover:bg-[#F1F3F4]">Ox</button>
+                <button data-cpreset="shift" type="button" class="cpreset-btn h-[21px] border border-[#DCDCDC] rounded-[2px] bg-white text-[9.5px] text-[#3C4043] hover:bg-[#F1F3F4]">Desl.</button>
               </div>
             </div>
 
@@ -391,47 +392,63 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- ABA 2: ÁLGEBRA & 2D (WINTERLE CAP. 9 → CAP. 8 + VISTA 2D 256×180)   -->
+    <!-- ABA 2: ÁLGEBRA & 2D (DEMONSTRAÇÃO PASSO A PASSO + VISTA 2D 260×185) -->
     <!-- =================================================================== -->
     <div id="tab-algebra" class="hidden flex-1 overflow-y-auto ggb-scroll p-2.5 space-y-2.5 bg-[#F8F9FA]">
 
-      <!-- Bloco 1: Superfície Cônica (Cap. 9) -->
+      <!-- 1. Seletor de Plano Ativo para Demonstração -->
+      <div class="p-2 bg-white border border-[#DCDCDC] rounded-[2px] space-y-1">
+        <div class="flex items-center justify-between text-[10.5px]">
+          <span class="font-semibold text-[#3C4043]">Plano para Demonstração</span>
+          <span id="demo-plane-status" class="font-math text-[9.5px] text-[#5F6368]">Principal</span>
+        </div>
+        <select id="select-demo-plane" class="w-full h-[24px] px-1.5 text-[11px] font-math border border-[#DCDCDC] rounded-[2px] bg-[#F8F9FA] text-[#202124] outline-none focus:border-[#1565C0]"></select>
+      </div>
+
+      <!-- 2. Superfície Cônica (Resumo Cap. 9) -->
       <div class="p-2 bg-white border border-[#DCDCDC] rounded-[2px] space-y-1.5">
         <div class="flex items-center justify-between text-[11px]">
           <span id="alg-cone-class" class="font-semibold text-[#00838F]">Cone Circular Reto</span>
           <span id="alg-cone-axis" class="font-math text-[10px] text-[#5F6368]">Eixo Oz</span>
         </div>
-
         <div class="px-2 py-1 bg-[#F8F9FA] border border-[#ECEFF1] rounded-[2px] space-y-0.5 font-math">
           <div id="alg-canonical-eq" class="text-[11px] font-semibold text-[#202124] break-words"></div>
           <div id="alg-winterle-eq" class="text-[10px] text-[#5F6368] break-words"></div>
         </div>
-
-        <div id="alg-cone-props" class="space-y-0.5 text-[10.5px] font-math text-[#3C4043] leading-snug break-words"></div>
+        <div id="alg-cone-props" class="space-y-0.5 text-[10px] font-math text-[#3C4043] leading-snug break-words"></div>
       </div>
 
-      <!-- Bloco 2: Desconstrução em Seção Cônica (Cap. 9 → Cap. 8) -->
+      <!-- 3. Demonstração Algébrica Ao Vivo (Passos 1 a 5: Superfície + Plano) -->
       <div class="p-2 bg-white border border-[#DCDCDC] rounded-[2px] space-y-1.5">
         <div class="flex items-center justify-between text-[11px]">
           <span id="alg-sec-class" class="font-semibold text-[#5F6368]">Diretriz Perpendicular</span>
           <span id="alg-sec-ecc" class="font-math text-[10px] text-[#5F6368]">Plano Off</span>
         </div>
-
-        <div id="alg-sec-quad-wrap" class="hidden px-2 py-1 bg-[#F8F9FA] border border-[#ECEFF1] rounded-[2px] space-y-0.5 font-math text-[10px] text-[#3C4043] break-words"></div>
-
-        <div id="alg-sec-reduced" class="px-2 py-1 bg-[#F8F9FA] border border-[#ECEFF1] rounded-[2px] font-math text-[11px] font-semibold text-[#202124] break-words"></div>
-
-        <div id="alg-sec-props" class="space-y-0.5 text-[10.5px] font-math text-[#3C4043] leading-snug break-words"></div>
+        <div id="live-demo-steps" class="space-y-1.5 text-[10.5px] text-[#3C4043] leading-snug break-words"></div>
       </div>
 
-      <!-- Bloco 3: Vista 2D Sincronizada (256×180px) -->
+      <!-- 4. Demonstração Geral dos 3 Casos (Guia Didático Winterle) -->
+      <div class="p-2 bg-white border border-[#DCDCDC] rounded-[2px] space-y-1.5">
+        <div class="flex items-center justify-between text-[10.5px]">
+          <span class="font-semibold text-[#3C4043]">Guia dos 3 Casos (Winterle)</span>
+          <button id="btn-apply-guide" type="button" class="mini-chip active">Aplicar no 3D</button>
+        </div>
+        <div class="grid grid-cols-3 border border-[#DCDCDC] rounded-[2px] bg-[#F8F9FA] divide-x divide-[#DCDCDC] text-[10.5px]">
+          <button data-gcase="ellipse" type="button" class="gcase-btn py-1 font-semibold bg-[#E8F0FE] text-[#1565C0]">Elipse</button>
+          <button data-gcase="parabola" type="button" class="gcase-btn py-1 font-medium text-[#5F6368] hover:bg-[#F1F3F4]">Parábola</button>
+          <button data-gcase="hyperbola" type="button" class="gcase-btn py-1 font-medium text-[#5F6368] hover:bg-[#F1F3F4]">Hipérbole</button>
+        </div>
+        <div id="guide-steps-body" class="space-y-1 text-[10px] font-math text-[#3C4043] leading-snug break-words"></div>
+      </div>
+
+      <!-- 5. Vista 2D Sincronizada (260×185px) -->
       <div class="p-2 bg-white border border-[#DCDCDC] rounded-[2px] flex flex-col items-center">
-        <div class="w-[256px] flex items-center justify-between text-[10px] text-[#5F6368] mb-1">
+        <div class="w-[260px] flex items-center justify-between text-[10px] text-[#5F6368] mb-1">
           <span id="title-2d" class="font-medium truncate">Diretriz</span>
           <span id="axes-2d-label" class="font-math shrink-0 ml-1">x, y</span>
         </div>
-        <canvas id="canvas-2d" width="256" height="180" class="block border border-[#DCDCDC] bg-white" style="width:256px; height:180px;"></canvas>
-        <div id="legend-2d" class="w-[256px] text-[9.5px] text-[#70757A] mt-1 truncate">
+        <canvas id="canvas-2d" width="260" height="185" class="block border border-[#DCDCDC] bg-white" style="width:260px; height:185px;"></canvas>
+        <div id="legend-2d" class="w-[260px] text-[9.5px] text-[#70757A] mt-1 truncate">
           Centro · Vértices · Focos
         </div>
       </div>
@@ -562,8 +579,16 @@
         calcObjects: [],
         scopeVars: {},
         nextCalcId: 1,
-        nextColorIdx: 0
+        nextColorIdx: 0,
+        // Demonstração Algébrica na Aba 2
+        demoPlaneSource: 'main', // 'main' ou id numérico de um plano da Calculadora 3D
+        activeGuideCase: 'ellipse',
+        planeRaw: null // equação do plano exatamente como digitada (coeficientes originais)
       };
+
+      function planeSnap() {
+        return [state.theta, state.phi, state.k, state.axis, state.a, state.b, state.c, state.x0, state.y0, state.z0].join('|');
+      }
 
       // =======================================================================
       // 2. UTILITÁRIOS MATEMÁTICOS E FORMATAÇÃO
@@ -1030,6 +1055,7 @@
         }
 
         // Normaliza coeficientes para estabilidade numérica
+        var rawD = D, rawE = E, rawFc = Fc, rawG = G; // coeficientes originais (antes da normalização)
         A /= mag; B /= mag; C /= mag; D /= mag; E /= mag; Fc /= mag; G /= mag;
         var eps = 1e-5;
         var qArr = [A, B, C];
@@ -1048,7 +1074,8 @@
             kind: 'plane',
             badge: 'Plano Linear',
             normal: new THREE.Vector3(D / nLen, E / nLen, Fc / nLen),
-            d: -G / nLen
+            d: -G / nLen,
+            raw: { a: rawD, b: rawE, c: rawFc, d: -rawG }
           };
         }
 
@@ -1821,7 +1848,7 @@
         var F = function (x, y, z) { return lhs.fn(x, y, z, 0, state.scopeVars) - rhs.fn(x, y, z, 0, state.scopeVars); };
         var q = classifyQuadric(F);
         if (!q || q.kind !== 'plane') return { error: 'Não é uma equação linear de plano.' };
-        return { error: null, nx: q.normal.x, ny: q.normal.y, nz: q.normal.z, dGlobal: q.d };
+        return { error: null, nx: q.normal.x, ny: q.normal.y, nz: q.normal.z, dGlobal: q.d, raw: q.raw };
       }
 
       // =======================================================================
@@ -1831,19 +1858,23 @@
         return v1.x * v2.x * invA1Sq + v1.y * v2.y * invA2Sq - v1.z * v2.z * invGSq;
       }
 
-      function solvePlaneIntersection(st, frame) {
+      /**
+       * Resolve analiticamente a interseção de um plano definido no referencial local
+       * por (thetaDeg, phiDeg, kVal) com a superfície cônica atual.
+       */
+      function solvePlaneIntersectionFromParams(st, frame, thetaDeg, phiDeg, kVal) {
         var a1 = frame.alpha1, a2 = frame.alpha2, gam = frame.gamma;
         var invA1Sq = 1.0 / (a1 * a1), invA2Sq = 1.0 / (a2 * a2), invGSq = 1.0 / (gam * gam);
 
-        var thetaPDeg = computeThetaPDeg(a1, a2, gam, st.phi);
-        var isSnappedParabola = Math.abs(st.theta - thetaPDeg) < 0.08;
-        var effThetaDeg = isSnappedParabola ? thetaPDeg : st.theta;
+        var thetaPDeg = computeThetaPDeg(a1, a2, gam, phiDeg);
+        var isSnappedParabola = Math.abs(thetaDeg - thetaPDeg) < 0.08;
+        var effThetaDeg = isSnappedParabola ? thetaPDeg : thetaDeg;
 
-        var th = degToRad(effThetaDeg), ph = degToRad(st.phi);
+        var th = degToRad(effThetaDeg), ph = degToRad(phiDeg);
         var sinT = Math.sin(th), cosT = Math.cos(th), sinP = Math.sin(ph), cosP = Math.cos(ph);
 
         var nLoc = new THREE.Vector3(sinT * cosP, sinT * sinP, cosT);
-        var kEff = st.k;
+        var kEff = kVal;
         var p0Loc = nLoc.clone().multiplyScalar(kEff);
         var eu = new THREE.Vector3(-cosT * cosP, -cosT * sinP, sinT);
         var ev = new THREE.Vector3(-sinP, cosP, 0);
@@ -1869,7 +1900,9 @@
         var quadInfo = {
           A: A, B: B, C: C, D: D, E: E, F: F,
           delta: deltaDisc, lam1: lam1, lam2: lam2,
-          thetaPDeg: thetaPDeg, nLoc: nLoc, p0Loc: p0Loc, kEff: kEff
+          psiDeg: radToDeg(psi), D1: D1, E1: E1,
+          thetaPDeg: thetaPDeg, effThetaDeg: effThetaDeg,
+          nLoc: nLoc, p0Loc: p0Loc, kEff: kEff
         };
 
         var branches = [];
@@ -2079,6 +2112,29 @@
         sec.meta2D.directrices = [-dDirH, dDirH];
         sec.meta2D.asymptotes = { slope: slopeAsym };
         return { H: H, branches: branches, sec: sec, quad: quadInfo };
+      }
+
+      function solvePlaneIntersection(st, frame) {
+        return solvePlaneIntersectionFromParams(st, frame, st.theta, st.phi, st.k);
+      }
+
+      /**
+       * Converte um plano global (nGlobal · r = dGlobal) para o referencial local do cone
+       * e resolve sua interseção exata com a superfície cônica.
+       */
+      function solveCalculatorPlaneIntersection(st, frame, nGlobal, dGlobal) {
+        var nG = nGlobal.clone().normalize();
+        var nXi = nG.dot(frame.eXi);
+        var nEta = nG.dot(frame.eEta);
+        var nZeta = nG.dot(frame.eZeta);
+        var kLoc = dGlobal - (nG.x * st.x0 + nG.y * st.y0 + nG.z * st.z0);
+        if (nZeta < 0) {
+          nXi = -nXi; nEta = -nEta; nZeta = -nZeta; kLoc = -kLoc;
+        }
+        var sH = Math.hypot(nXi, nEta);
+        var thetaDeg = radToDeg(Math.atan2(sH, clamp(nZeta, 0, 1)));
+        var phiDeg = sH > 1e-7 ? radToDeg(Math.atan2(nEta, nXi)) : 0;
+        return solvePlaneIntersectionFromParams(st, frame, thetaDeg, phiDeg, kLoc);
       }
 
       // =======================================================================
@@ -2296,7 +2352,8 @@
       var tracesGroup = new THREE.Group();
       var curveGroup  = new THREE.Group();
       var calcRootGroup = new THREE.Group();
-      scene.add(guidesGroup, tracesGroup, curveGroup, calcRootGroup);
+      var calcIntersectionsGroup = new THREE.Group();
+      scene.add(guidesGroup, tracesGroup, curveGroup, calcRootGroup, calcIntersectionsGroup);
 
       var generatorMesh = new THREE.Mesh(
         new THREE.CylinderGeometry(1, 1, 1, 12, 1),
@@ -2520,12 +2577,12 @@
           for (var i = 0; i <= 96; i++) { var a = (i / 96) * Math.PI * 2; pts.push(frame.localToGlobalPt(r1D * Math.cos(a), r2D * Math.sin(a), zv)); }
           tracesGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), ringMat));
         }
-        if (state.sheetMode === 'both' || state.sheetMode === 'upper') addRing(zDir);
-        if (state.sheetMode === 'both' || state.sheetMode === 'lower') addRing(-zDir);
+        if (state.sheetMode !== 'lower') addRing(zDir);
+        if (state.sheetMode !== 'upper') addRing(-zDir);
       }
 
-      function rebuildCurveMeshes(branches, colorNum, H) {
-        disposeGroup(curveGroup);
+      function rebuildCurveMeshesInto(targetGroup, branches, colorNum, H, clearFirst) {
+        if (clearFirst) disposeGroup(targetGroup);
         var mat = new THREE.MeshBasicMaterial({ color: colorNum });
         var tubeRadius = Math.max(0.065, H * 0.0075);
         for (var i = 0; i < branches.length; i++) {
@@ -2535,26 +2592,30 @@
           if (br.isPoint) {
             var spM = new THREE.Mesh(new THREE.SphereGeometry(tubeRadius * 2.1, 20, 20), mat);
             spM.position.copy(br.points3D[0]); spM.renderOrder = 14;
-            curveGroup.add(spM); continue;
+            targetGroup.add(spM); continue;
           }
           var pts = sanitizePoints3D(br.points3D);
           if (pts.length < 2) continue;
           if (pts.length === 2) {
             var mL = new THREE.Mesh(new THREE.TubeGeometry(new THREE.LineCurve3(pts[0], pts[1]), 28, tubeRadius, 10, false), mat);
-            mL.renderOrder = 10; curveGroup.add(mL);
+            mL.renderOrder = 10; targetGroup.add(mL);
           } else {
             var cat = new THREE.CatmullRomCurve3(pts, !!br.closed, 'centripetal', 0.5);
             var mC = new THREE.Mesh(new THREE.TubeGeometry(cat, Math.min(200, Math.max(40, pts.length)), tubeRadius, 12, !!br.closed), mat);
-            mC.renderOrder = 10; curveGroup.add(mC);
+            mC.renderOrder = 10; targetGroup.add(mC);
           }
         }
+      }
+
+      function rebuildCurveMeshes(branches, colorNum, H) {
+        rebuildCurveMeshesInto(curveGroup, branches, colorNum, H, true);
       }
 
       var canvas2D = document.getElementById('canvas-2d');
       var ctx2D = canvas2D.getContext('2d');
 
       function draw2DCanvas(payload) {
-        var cssW = 256, cssH = 180;
+        var cssW = 260, cssH = 185;
         var dpr = Math.min(window.devicePixelRatio || 1, 2);
         if (canvas2D.width !== cssW * dpr || canvas2D.height !== cssH * dpr) {
           canvas2D.width = cssW * dpr; canvas2D.height = cssH * dpr;
@@ -2709,14 +2770,28 @@
           }
 
           item.isVariable = false;
+          item.planeData = null;
           if (!parsed.error && parsed.kind !== 'empty' && parsed.kind !== 'empty_set') {
+            if (parsed.kind === 'plane') {
+              item.planeData = { normal: parsed.normal.clone(), d: parsed.d, raw: parsed.raw, text: (item.expr || '').trim() };
+              if (typeof item.showIntersection !== 'boolean') item.showIntersection = true;
+            }
             item.group = buildCalcObjectGroup(parsed, item.color, state.scopeVars);
             item.group.visible = item.visible;
             calcRootGroup.add(item.group);
           }
         });
 
+        // Se o plano selecionado para demonstração foi removido ou deixou de ser plano, volta ao principal
+        if (state.demoPlaneSource !== 'main') {
+          var stillExists = state.calcObjects.some(function (o) {
+            return o.id === state.demoPlaneSource && o.planeData;
+          });
+          if (!stillExists) state.demoPlaneSource = 'main';
+        }
+
         if (!skipUIRender) renderCalcListUI();
+        updateAll();
       }
 
       /**
@@ -2724,6 +2799,7 @@
        */
       function refreshDependentMeshes(varItem) {
         state.scopeVars[varItem.varName] = varItem.varValue;
+        var hasPlaneChanged = false;
         state.calcObjects.forEach(function (item) {
           if (item.id === varItem.id || item.isVariable) return;
           if (item.group) {
@@ -2734,7 +2810,13 @@
           var parsed = parseCalculatorExpression(item.expr, state.scopeVars);
           item.error = parsed.error || null;
           item.badge = parsed.error ? parsed.error : (parsed.badge || '');
+          item.planeData = null;
           if (!parsed.error && parsed.kind !== 'empty' && parsed.kind !== 'empty_set') {
+            if (parsed.kind === 'plane') {
+              item.planeData = { normal: parsed.normal.clone(), d: parsed.d, raw: parsed.raw, text: (item.expr || '').trim() };
+              if (typeof item.showIntersection !== 'boolean') item.showIntersection = true;
+              hasPlaneChanged = true;
+            }
             item.group = buildCalcObjectGroup(parsed, item.color, state.scopeVars);
             item.group.visible = item.visible;
             calcRootGroup.add(item.group);
@@ -2742,9 +2824,10 @@
           var bEl = document.getElementById('calc-badge-' + item.id);
           if (bEl) {
             bEl.textContent = item.badge;
-            bEl.className = 'text-[9.5px] font-math truncate ' + (item.error ? 'text-[#D32F2F]' : 'text-[#70757A]');
+            bEl.className = 'pl-5 text-[9.5px] font-math truncate ' + (item.error ? 'text-[#D32F2F]' : 'text-[#5F6368]');
           }
         });
+        if (hasPlaneChanged) updateAll();
       }
 
       function renderCalcListUI() {
@@ -2772,6 +2855,7 @@
               item.visible = !item.visible;
               if (item.group) item.group.visible = item.visible;
               dot.style.backgroundColor = item.visible ? item.color : 'transparent';
+              if (item.planeData) updateAll();
             });
             dot.addEventListener('contextmenu', function (e) {
               e.preventDefault();
@@ -2785,7 +2869,7 @@
           inp.type = 'text';
           inp.className = 'expr-input font-math' + (item.error ? ' invalid' : '');
           inp.value = item.expr;
-          inp.placeholder = 'ex: y²/4 + z²/2.25 - x²/2.25 = 0 ou r = 3';
+          inp.placeholder = 'ex: x = 2 | z = 0.6x + 1 | r = 3';
           inp.spellcheck = false;
           inp.autocomplete = 'off';
 
@@ -2813,13 +2897,52 @@
           topRow.appendChild(rmBtn);
           card.appendChild(topRow);
 
-          // Linha inteligente de classificação abaixo da expressão
-          if (item.badge) {
+          // Linha inteligente de classificação + botões de Interseção/Álgebra para planos
+          if (item.badge || item.planeData) {
+            var metaRow = document.createElement('div');
+            metaRow.className = 'pl-5 flex items-center justify-between gap-1';
+
             var badgeEl = document.createElement('div');
             badgeEl.id = 'calc-badge-' + item.id;
             badgeEl.textContent = item.badge;
-            badgeEl.className = 'pl-5 text-[9.5px] font-math truncate ' + (item.error ? 'text-[#D32F2F]' : 'text-[#5F6368]');
-            card.appendChild(badgeEl);
+            badgeEl.className = 'text-[9.5px] font-math truncate ' + (item.error ? 'text-[#D32F2F]' : 'text-[#5F6368]');
+            metaRow.appendChild(badgeEl);
+
+            if (item.planeData) {
+              var actionsWrap = document.createElement('div');
+              actionsWrap.className = 'flex items-center gap-1 shrink-0';
+
+              var intBtn = document.createElement('button');
+              intBtn.type = 'button';
+              intBtn.textContent = 'Curva';
+              intBtn.title = 'Mostrar/ocultar curva 3D de interseção com o cone';
+              intBtn.className = 'mini-chip' + (item.showIntersection ? ' active' : '');
+              intBtn.addEventListener('click', function () {
+                item.showIntersection = !item.showIntersection;
+                renderCalcListUI();
+                updateAll();
+              });
+
+              var algBtn = document.createElement('button');
+              algBtn.type = 'button';
+              algBtn.textContent = 'Álgebra';
+              algBtn.title = 'Ver demonstração algébrica passo a passo na aba Álgebra & 2D';
+              algBtn.className = 'mini-chip' + (state.demoPlaneSource === item.id ? ' active' : '');
+              algBtn.addEventListener('click', function () {
+                item.visible = true;
+                item.showIntersection = true;
+                if (item.group) item.group.visible = true;
+                state.demoPlaneSource = item.id;
+                renderCalcListUI();
+                setTab('algebra');
+              });
+
+              actionsWrap.appendChild(intBtn);
+              actionsWrap.appendChild(algBtn);
+              metaRow.appendChild(actionsWrap);
+            }
+
+            card.appendChild(metaRow);
           }
 
           // Se for variável escalar, renderiza slider automático inline (min, slider, max)
@@ -2896,7 +3019,200 @@
       }
 
       // =======================================================================
-      // 14. SINCRONIZAÇÃO GERAL (updateAll)
+      // 14. DEMONSTRAÇÃO ALGÉBRICA PASSO A PASSO + GUIA DOS 3 CASOS (WINTERLE)
+      // =======================================================================
+      function buildStepBlock(num, title, bodyHtml, borderHex) {
+        var bCol = borderHex || '#DCDCDC';
+        return (
+          '<div class="pl-2 py-1 bg-[#F8F9FA] rounded-r-[2px] space-y-0.5" style="border-left:2.5px solid ' + bCol + ';">' +
+          '<div class="text-[9.5px] font-semibold uppercase tracking-wide text-[#5F6368]">Passo ' + num + ' — ' + title + '</div>' +
+          '<div class="font-math text-[10px] text-[#202124] space-y-0.5">' + bodyHtml + '</div>' +
+          '</div>'
+        );
+      }
+
+      /**
+       * Gera os 5 passos algébricos reais juntando (S) Superfície Cônica + (π) Plano Ativo.
+       */
+      function renderLiveAlgebraDemo(st, frame, planeEqStr, nGlobal, dGlobal, sol, rawPlane) {
+        var s = sol.sec, q = sol.quad;
+        var coneEq = formatCanonicalConeEq(st);
+
+        // Passo 1: Sistema de Equações
+        var step1 = buildStepBlock(1, 'Sistema de Equações',
+          '<div>(S) ' + coneEq + '</div>' +
+          '<div>(π) ' + planeEqStr + '</div>',
+          '#546E7A'
+        );
+
+        // Passo 2: Isolamento e Substituição
+        var nx = nGlobal.x, ny = nGlobal.y, nz = nGlobal.z;
+        var absNx = Math.abs(nx), absNy = Math.abs(ny), absNz = Math.abs(nz);
+        var step2Html = '';
+        var axisAligned = null;
+
+        if (absNx > 0.9995) {
+          axisAligned = { varName: 'x', val: dGlobal / nx, v0: st.x0, p: st.a, isAxial: st.axis === 'x', r1: 'y', r10: st.y0, p1: st.b, r2: 'z', r20: st.z0, p2: st.c };
+        } else if (absNy > 0.9995) {
+          axisAligned = { varName: 'y', val: dGlobal / ny, v0: st.y0, p: st.b, isAxial: st.axis === 'y', r1: 'x', r10: st.x0, p1: st.a, r2: 'z', r20: st.z0, p2: st.c };
+        } else if (absNz > 0.9995) {
+          axisAligned = { varName: 'z', val: dGlobal / nz, v0: st.z0, p: st.c, isAxial: st.axis === 'z', r1: 'x', r10: st.x0, p1: st.a, r2: 'y', r20: st.y0, p2: st.b };
+        }
+
+        if (axisAligned) {
+          var aa = axisAligned;
+          var diff = aa.val - aa.v0;
+          var rhsConst = (diff * diff) / (aa.p * aa.p);
+          var t1 = fmtShiftedSq(aa.r1, aa.r10) + '/' + fmtTrim(aa.p1, 2) + '²';
+          var t2 = fmtShiftedSq(aa.r2, aa.r20) + '/' + fmtTrim(aa.p2, 2) + '²';
+          var subTerm = '(' + fmtTrim(aa.val, 2) + (Math.abs(aa.v0) < 1e-4 ? '' : (aa.v0 > 0 ? '−' : '+') + fmtTrim(Math.abs(aa.v0), 2)) + ')²/' + fmtTrim(aa.p, 2) + '²';
+
+          if (aa.isAxial) {
+            step2Html =
+              '<div>Substituindo ' + aa.varName + ' = ' + fmtTrim(aa.val, 2) + ' em (S):</div>' +
+              '<div>' + t1 + ' + ' + t2 + ' − ' + subTerm + ' = 0</div>' +
+              '<div>⇒ ' + t1 + ' + ' + t2 + ' = ' + fmt(rhsConst, 3) + '</div>';
+          } else {
+            // Corte paralelo ao eixo de simetria: gera Hipérbole (ou par de retas se rhsConst = 0)
+            var axialIsR2 = st.axis === aa.r2;
+            var posTerm = axialIsR2 ? t2 : t1;
+            var negTerm = axialIsR2 ? t1 : t2;
+            step2Html =
+              '<div>Substituindo ' + aa.varName + ' = ' + fmtTrim(aa.val, 2) + ' em (S):</div>' +
+              '<div>' + subTerm + ' + ' + negTerm + ' − ' + posTerm + ' = 0</div>' +
+              '<div>⇒ ' + posTerm + ' − ' + negTerm + ' = ' + fmt(rhsConst, 3) + '</div>';
+          }
+        } else {
+          // Plano inclinado: isola a variável usando os coeficientes ORIGINAIS digitados (sem normalizar)
+          var isoVar = (absNz >= 0.25 || (absNz >= absNx && absNz >= absNy)) ? 'z' : (absNx >= absNy ? 'x' : 'y');
+          var cf = rawPlane ? { x: rawPlane.a, y: rawPlane.b, z: rawPlane.c, d: rawPlane.d }
+                            : { x: nx, y: ny, z: nz, d: dGlobal };
+          var isoCoef = cf[isoVar];
+          var isoParts = [];
+          ['x', 'y', 'z'].forEach(function (vn) {
+            if (vn === isoVar || Math.abs(cf[vn]) < 1e-9) return;
+            var coefV = -cf[vn] / isoCoef;
+            var absC = Math.abs(coefV);
+            var magS = (Math.abs(absC - 1) < 1e-9 ? '' : fmtTrim(absC, 3)) + vn;
+            isoParts.push(isoParts.length === 0 ? (coefV < 0 ? '−' : '') + magS : (coefV < 0 ? ' − ' : ' + ') + magS);
+          });
+          var dIso = cf.d / isoCoef;
+          if (Math.abs(dIso) > 1e-9 || isoParts.length === 0) {
+            isoParts.push(isoParts.length === 0 ? fmtTrim(dIso, 3) : (dIso < 0 ? ' − ' : ' + ') + fmtTrim(Math.abs(dIso), 3));
+          }
+          var isoStr = isoParts.join('');
+
+          // Cone com a variável isolada substituída (sem simplificar)
+          function sTerm(v, v0, p) {
+            var num;
+            if (v === isoVar) {
+              num = Math.abs(v0) < 1e-5 ? '(' + isoStr + ')²' : '((' + isoStr + ')' + (v0 > 0 ? ' − ' : ' + ') + fmtTrim(Math.abs(v0), 2) + ')²';
+            } else {
+              num = fmtShiftedSq(v, v0);
+            }
+            return Math.abs(p - 1) < 1e-5 ? num : num + '/' + fmtTrim(p, 2) + '²';
+          }
+          var tX = sTerm('x', st.x0, st.a), tY = sTerm('y', st.y0, st.b), tZ = sTerm('z', st.z0, st.c);
+          var coneSubst = st.axis === 'x' ? (tY + ' + ' + tZ + ' − ' + tX)
+                        : (st.axis === 'y' ? (tX + ' + ' + tZ + ' − ' + tY) : (tX + ' + ' + tY + ' − ' + tZ));
+
+          step2Html =
+            '<div>Isolando ' + isoVar + ' em (π): ' + isoVar + ' = ' + isoStr + '</div>' +
+            '<div>Substituindo em (S):</div>' +
+            '<div>' + coneSubst + ' = 0</div>' +
+            '<div>Projetando na base ortonormal (u, v) de π (θ = ' + fmt(q.effThetaDeg, 1) + '°, θp = ' + fmt(q.thetaPDeg, 1) + '°).</div>';
+        }
+        var step2 = buildStepBlock(2, 'Isolamento e Substituição', step2Html, '#1565C0');
+
+        // Passo 3: Forma Quadrática Geral e Discriminante
+        var dRel = Math.abs(q.delta) < 1e-4 ? '= 0 (Parábola)' : (q.delta < 0 ? '< 0 (Elipse)' : '> 0 (Hipérbole)');
+        var step3 = buildStepBlock(3, 'Forma Quadrática & Discriminante',
+          '<div>' + formatPlaneQuadratic(q.A, q.B, q.C, q.D, q.E, q.F) + '</div>' +
+          '<div>Δ = B² − 4AC = ' + fmt(q.delta, 3) + ' ' + dRel + '</div>',
+          '#5F6368'
+        );
+
+        // Passo 4: Normalização / Completamento de Quadrados
+        var step4Html = '';
+        if (axisAligned) {
+          var diff4 = axisAligned.val - axisAligned.v0;
+          var rhs4 = (diff4 * diff4) / (axisAligned.p * axisAligned.p);
+          if (rhs4 > 1e-6) {
+            step4Html =
+              '<div>Dividindo ambos os membros por ' + fmt(rhs4, 3) + ' para obter 1 no 2º membro:</div>' +
+              '<div>Semieixos resultantes: ' + fmt(axisAligned.p1 * Math.sqrt(rhs4), 2) + ' e ' + fmt(axisAligned.p2 * Math.sqrt(rhs4), 2) + '</div>';
+          } else {
+            step4Html = '<div>O plano passa pelo vértice V (termo constante = 0 ⇒ seção degenerada).</div>';
+          }
+        } else {
+          var rotTxt = Math.abs(q.B) > 1e-4
+            ? ('Rotação ψ = ' + fmt(q.psiDeg, 1) + '° elimina B·uv ⇒ λ₁=' + fmt(q.lam1, 2) + ', λ₂=' + fmt(q.lam2, 2))
+            : ('Eixos já alinhados (B = 0) ⇒ λ₁=' + fmt(q.lam1, 2) + ', λ₂=' + fmt(q.lam2, 2));
+          var normTxt = s.type === 'parabola'
+            ? 'Completando quadrados no termo não-nulo e isolando o termo linear em u\'.'
+            : (s.type === 'degenerate' ? 'Termo independente anula-se após completar quadrados.' : 'Completando quadrados em (u\', v\') e dividindo pelo termo independente.');
+          step4Html = '<div>' + rotTxt + '</div><div>' + normTxt + '</div>';
+        }
+        var step4 = buildStepBlock(4, 'Normalização / Quadrados', step4Html, '#5F6368');
+
+        // Passo 5: Equação Canônica Final
+        var step5Html =
+          '<div class="text-[11px] font-bold" style="color:' + s.color.hex + ';">' + s.canonicalEq + '</div>' +
+          s.details.map(function (d) { return '<div class="text-[#3C4043]">' + d + '</div>'; }).join('');
+        var step5 = buildStepBlock(5, 'Equação Canônica (' + s.name + ')', step5Html, s.color.hex);
+
+        return step1 + step2 + step3 + step4 + step5;
+      }
+
+      /**
+       * Renderiza o Guia Didático Winterle para Elipse, Parábola e Hipérbole
+       * usando os parâmetros (a, b, c) e eixo do cone atual.
+       */
+      function renderWinterleGuide(st, frame) {
+        var xi = frame.xiName, eta = frame.etaName, zeta = frame.zetaName;
+        var a1 = frame.alpha1, a2 = frame.alpha2, gam = frame.gamma;
+        var a1s = fmtTrim(a1, 2), a2s = fmtTrim(a2, 2), gs = fmtTrim(gam, 2);
+        var kVal = 2.0, ks = '2';
+        var html = '';
+
+        if (state.activeGuideCase === 'ellipse') {
+          var r1 = (a1 * kVal) / gam, r2 = (a2 * kVal) / gam;
+          var rhs = (kVal * kVal) / (gam * gam);
+          var isCirc = Math.abs(a1 - a2) < 1e-3;
+          html =
+            '<div><strong>Condição:</strong> Plano ' + zeta + ' = k (ou inclinado com θ &lt; θp).</div>' +
+            '<div><strong>1.</strong> Cone: ' + xi + '²/' + a1s + '² + ' + eta + '²/' + a2s + '² − ' + zeta + '²/' + gs + '² = 0</div>' +
+            '<div><strong>2.</strong> Substituindo ' + zeta + ' = ' + ks + ': ' + xi + '²/' + a1s + '² + ' + eta + '²/' + a2s + '² = ' + fmt(rhs, 2) + '</div>' +
+            '<div><strong>3.</strong> Dividindo por ' + fmt(rhs, 2) + ':</div>' +
+            '<div class="font-semibold text-[#1565C0]">' +
+            (isCirc ? (xi + '² + ' + eta + '² = ' + fmt(r1, 2) + '²  (Circunferência)')
+                    : (xi + '²/' + fmt(r1, 2) + '² + ' + eta + '²/' + fmt(r2, 2) + '² = 1  (Elipse)')) +
+            '</div>';
+        } else if (state.activeGuideCase === 'parabola') {
+          var m = gam / a1;
+          var tp = computeThetaPDeg(a1, a2, gam, 0);
+          var coefLin = (2 * kVal * m) / (gam * gam);
+          html =
+            '<div><strong>Condição:</strong> Plano paralelo à geratriz (θ = θp = ' + fmt(tp, 1) + '°): ' + zeta + ' = (' + gs + '/' + a1s + ')' + xi + ' + ' + ks + '</div>' +
+            '<div><strong>1.</strong> Substituindo ' + zeta + ' no cone:</div>' +
+            '<div>' + xi + '²/' + a1s + '² + ' + eta + '²/' + a2s + '² − (' + xi + '/' + a1s + ' + ' + ks + '/' + gs + ')² = 0</div>' +
+            '<div><strong>2.</strong> O termo ' + xi + '²/' + a1s + '² <strong>cancela exatamente</strong>!</div>' +
+            '<div class="font-semibold text-[#2E7D32]">' + eta + '²/' + a2s + '² = ' + fmt(coefLin, 2) + '·' + xi + ' + ' + fmt((kVal*kVal)/(gam*gam), 2) + '  ⇒  v\'² = 2p_f·u\'</div>';
+        } else {
+          var rhsH = (kVal * kVal) / (a1 * a1);
+          var rZ = (gam * kVal) / a1, rE = (a2 * kVal) / a1;
+          html =
+            '<div><strong>Condição:</strong> Plano paralelo ao eixo ' + xi + ' = ' + ks + ' (ou θ &gt; θp).</div>' +
+            '<div><strong>1.</strong> Cone: ' + xi + '²/' + a1s + '² + ' + eta + '²/' + a2s + '² − ' + zeta + '²/' + gs + '² = 0</div>' +
+            '<div><strong>2.</strong> Substituindo ' + xi + ' = ' + ks + ': ' + zeta + '²/' + gs + '² − ' + eta + '²/' + a2s + '² = ' + fmt(rhsH, 2) + '</div>' +
+            '<div><strong>3.</strong> Dividindo por ' + fmt(rhsH, 2) + ' (sinais opostos):</div>' +
+            '<div class="font-semibold text-[#D84315]">' + zeta + '²/' + fmt(rZ, 2) + '² − ' + eta + '²/' + fmt(rE, 2) + '² = 1  (Hipérbole)</div>';
+        }
+        return html;
+      }
+
+      // =======================================================================
+      // 15. SINCRONIZAÇÃO GERAL (updateAll)
       // =======================================================================
       var ui = {
         tabBtnObjects: document.getElementById('tab-btn-objects'),
@@ -2936,6 +3252,8 @@
         numK: document.getElementById('num-k'),
         chipPlaneGlass: document.getElementById('chip-plane-glass'),
         chipPlaneCurve: document.getElementById('chip-plane-curve'),
+        selectDemoPlane: document.getElementById('select-demo-plane'),
+        demoPlaneStatus: document.getElementById('demo-plane-status'),
         algConeClass: document.getElementById('alg-cone-class'),
         algConeAxis: document.getElementById('alg-cone-axis'),
         algCanonicalEq: document.getElementById('alg-canonical-eq'),
@@ -2943,9 +3261,9 @@
         algConeProps: document.getElementById('alg-cone-props'),
         algSecClass: document.getElementById('alg-sec-class'),
         algSecEcc: document.getElementById('alg-sec-ecc'),
-        algSecQuadWrap: document.getElementById('alg-sec-quad-wrap'),
-        algSecReduced: document.getElementById('alg-sec-reduced'),
-        algSecProps: document.getElementById('alg-sec-props'),
+        liveDemoSteps: document.getElementById('live-demo-steps'),
+        guideStepsBody: document.getElementById('guide-steps-body'),
+        gcaseBtns: document.querySelectorAll('.gcase-btn'),
         title2D: document.getElementById('title-2d'),
         axes2DLabel: document.getElementById('axes-2d-label'),
         legend2D: document.getElementById('legend-2d'),
@@ -2973,8 +3291,21 @@
         var isCircular = Math.abs(frame.alpha1 - frame.alpha2) < 1e-3;
         var sol = state.planeActive ? solvePlaneIntersection(state, frame) : null;
 
+        // Resolve também interseções de todos os planos visíveis da Calculadora 3D
+        var calcPlaneSols = [];
+        var maxCalcH = 0;
+        state.calcObjects.forEach(function (item) {
+          if (item.planeData && (item.visible || state.demoPlaneSource === item.id)) {
+            var cSol = solveCalculatorPlaneIntersection(state, frame, item.planeData.normal, item.planeData.d);
+            calcPlaneSols.push({ item: item, sol: cSol });
+            if (item.visible && item.showIntersection) {
+              maxCalcH = Math.max(maxCalcH, cSol.H);
+            }
+          }
+        });
+
         // 1. Escala dinâmica H sem teto H_MAX
-        var H = sol ? sol.H : Math.max(6.0, 3.0 * frame.gamma);
+        var H = Math.max(6.0, 3.0 * frame.gamma, sol ? sol.H : 0, maxCalcH);
         var maxRadScale = Math.max(frame.alpha1 / frame.gamma, frame.alpha2 / frame.gamma);
         var coneBoundingR = Math.hypot(H, H * maxRadScale);
         var vertexDist = Math.hypot(state.x0, state.y0, state.z0);
@@ -3013,43 +3344,56 @@
         coneUpperGroup.visible = state.sheetMode === 'both' || state.sheetMode === 'upper';
         coneLowerGroup.visible = state.sheetMode === 'both' || state.sheetMode === 'lower';
         coneGroup.visible = state.showCone;
-
-        rebuildGuides(frame, H, coneBoundingR);
-        guidesGroup.visible = state.showGuides;
-        updateGeneratorTransform(frame, H, coneBoundingR);
-        rebuildTraces(frame, H);
-        tracesGroup.visible = state.showTraces;
         axesGroup.visible = state.showAxes;
 
-        // 3. Plano Secante & Curva 3D
+        rebuildGuides(frame, H, coneBoundingR);
+        rebuildTraces(frame, H);
+        guidesGroup.visible = state.showGuides;
+        tracesGroup.visible = state.showTraces;
+        updateGeneratorTransform(frame, H, coneBoundingR);
+        // 3. Plano Secante & Curva 3D + Curvas de Interseção dos Planos da Calculadora 3D
         var accentHex = isCircular ? CONIC_COLORS.circle.hex : CONIC_COLORS.ellipse.hex;
         var globalPlaneEqStr = '';
+        var mainPlaneNormal = null, mainPlaneD = 0;
+
         if (state.planeActive && sol) {
           var sec = sol.sec, quad = sol.quad;
           accentHex = sec.color.hex;
-          var nGlob = frame.localToGlobalDir(quad.nLoc.x, quad.nLoc.y, quad.nLoc.z).normalize();
+          mainPlaneNormal = frame.localToGlobalDir(quad.nLoc.x, quad.nLoc.y, quad.nLoc.z).normalize();
           var pGlob = frame.localToGlobalPt(quad.p0Loc.x, quad.p0Loc.y, quad.p0Loc.z);
           var pSize = Math.max(12.0, 2.8 * coneBoundingR + 2.0 * Math.abs(quad.kEff));
           planeGroup.position.copy(pGlob);
-          planeGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), nGlob);
+          planeGroup.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), mainPlaneNormal);
           planeGroup.scale.set(pSize, pSize, 1);
           planeFillMat.color.setHex(sec.color.num);
           planeBorderMat.color.setHex(sec.color.num);
           planeGroup.visible = state.showPlaneGlass;
           rebuildCurveMeshes(sol.branches, sec.color.num, H);
           curveGroup.visible = state.showPlaneCurve;
-          var dGlob = quad.kEff + nGlob.x * state.x0 + nGlob.y * state.y0 + nGlob.z * state.z0;
-          globalPlaneEqStr = formatGlobalPlaneEq(nGlob.x, nGlob.y, nGlob.z, dGlob);
+          mainPlaneD = quad.kEff + mainPlaneNormal.x * state.x0 + mainPlaneNormal.y * state.y0 + mainPlaneNormal.z * state.z0;
+          globalPlaneEqStr = formatGlobalPlaneEq(mainPlaneNormal.x, mainPlaneNormal.y, mainPlaneNormal.z, mainPlaneD);
         } else {
           planeGroup.visible = false;
           curveGroup.visible = false;
           disposeGroup(curveGroup);
           var thR = degToRad(state.theta), phR = degToRad(state.phi);
           var nL = new THREE.Vector3(Math.sin(thR)*Math.cos(phR), Math.sin(thR)*Math.sin(phR), Math.cos(thR));
-          var nG = frame.localToGlobalDir(nL.x, nL.y, nL.z).normalize();
-          var dG = state.k + nG.x * state.x0 + nG.y * state.y0 + nG.z * state.z0;
-          globalPlaneEqStr = formatGlobalPlaneEq(nG.x, nG.y, nG.z, dG);
+          mainPlaneNormal = frame.localToGlobalDir(nL.x, nL.y, nL.z).normalize();
+          mainPlaneD = state.k + mainPlaneNormal.x * state.x0 + mainPlaneNormal.y * state.y0 + mainPlaneNormal.z * state.z0;
+          globalPlaneEqStr = formatGlobalPlaneEq(mainPlaneNormal.x, mainPlaneNormal.y, mainPlaneNormal.z, mainPlaneD);
         }
+
+        // Equação original do plano principal (só vale enquanto os parâmetros não mudarem)
+        var mainRaw = (state.planeRaw && state.planeRaw.snap === planeSnap()) ? state.planeRaw : null;
+        var planeDisplayStr = mainRaw ? mainRaw.text : globalPlaneEqStr;
+
+        // Renderiza curvas 3D de interseção para cada plano visível da Calculadora 3D
+        disposeGroup(calcIntersectionsGroup);
+        calcPlaneSols.forEach(function (entry) {
+          if (entry.item.visible && entry.item.showIntersection) {
+            rebuildCurveMeshesInto(calcIntersectionsGroup, entry.sol.branches, entry.sol.sec.color.num, H, false);
+          }
+        });
 
         // 4. Sincroniza Aba 1 (Objetos)
         document.documentElement.style.setProperty('--ggb-accent', accentHex);
@@ -3090,7 +3434,7 @@
         ui.visPlaneMaster.style.color = planeDotColor;
         ui.visPlaneMaster.style.backgroundColor = state.planeActive ? planeDotColor : 'transparent';
         if (!state.editingPlaneEq) {
-          ui.inputPlaneEq.value = globalPlaneEqStr;
+          ui.inputPlaneEq.value = planeDisplayStr;
           ui.inputPlaneEq.classList.remove('invalid');
         }
         if (state.planeActive && sol) {
@@ -3118,7 +3462,17 @@
         setToolbarActive(ui.tbAxes, state.showAxes, false);
         setToolbarActive(ui.tbAutozoom, state.autoZoom, false);
 
-        // 5. Sincroniza Aba 2 (Álgebra & 2D)
+        // 5. Sincroniza Seletor de Plano Ativo e Aba 2 (Álgebra & 2D)
+        var selOpts = '<option value="main">Plano Secante Principal (' + (state.planeActive ? planeDisplayStr : 'Off') + ')</option>';
+        state.calcObjects.forEach(function (item) {
+          if (item.planeData) {
+            var eqFmt = item.planeData.text || formatGlobalPlaneEq(item.planeData.normal.x, item.planeData.normal.y, item.planeData.normal.z, item.planeData.d);
+            selOpts += '<option value="' + item.id + '">Calc: ' + eqFmt + '</option>';
+          }
+        });
+        ui.selectDemoPlane.innerHTML = selOpts;
+        ui.selectDemoPlane.value = String(state.demoPlaneSource);
+
         ui.algConeClass.textContent = isCircular ? 'Cone Circular Reto' : 'Cone Elíptico';
         ui.algConeClass.style.color = isCircular ? CONIC_COLORS.circle.hex : CONIC_COLORS.ellipse.hex;
         ui.algConeAxis.textContent = 'Eixo ' + frame.axisLabel + ' · H=' + fmt(H, 1);
@@ -3133,25 +3487,36 @@
           'Traço ' + frame.etaName + '=' + fmtTrim(frame.eta0,2) + ': ' + fmtShiftedLin(frame.zetaName, frame.zeta0) + ' = ±' + fmtTrim(mXi,2) + '·' + fmtShiftedLin(frame.xiName, frame.xi0)
         ].map(function (l) { return '<div class="border-l-2 border-[#DCDCDC] pl-1.5">' + l + '</div>'; }).join('');
 
-        if (state.planeActive && sol) {
-          var s = sol.sec, q = sol.quad;
+        // Determina qual plano está alimentando a Demonstração Ao Vivo e a Vista 2D
+        var activeSol = null, activeNormal = null, activeD = 0, activePlaneEq = '', activeRaw = null;
+        if (state.demoPlaneSource === 'main') {
+          ui.demoPlaneStatus.textContent = state.planeActive ? 'Principal (On)' : 'Principal (Off)';
+          if (state.planeActive && sol) {
+            activeSol = sol; activeNormal = mainPlaneNormal; activeD = mainPlaneD; activePlaneEq = planeDisplayStr; activeRaw = mainRaw;
+          }
+        } else {
+          var found = calcPlaneSols.find(function (e) { return e.item.id === state.demoPlaneSource; });
+          if (found) {
+            activeSol = found.sol;
+            activeNormal = found.item.planeData.normal;
+            activeD = found.item.planeData.d;
+            activeRaw = found.item.planeData.raw || null;
+            activePlaneEq = found.item.planeData.text || formatGlobalPlaneEq(activeNormal.x, activeNormal.y, activeNormal.z, activeD);
+            ui.demoPlaneStatus.textContent = 'Plano da Calc.';
+          }
+        }
+
+        if (activeSol) {
+          var s = activeSol.sec;
           ui.algSecClass.textContent = s.name;
           ui.algSecClass.style.color = s.color.hex;
           ui.algSecEcc.textContent = 'e = ' + fmt(s.ecc, 3);
-          ui.algSecQuadWrap.classList.remove('hidden');
-          var dRel = Math.abs(q.delta) < 1e-4 ? '= 0' : (q.delta < 0 ? '< 0' : '> 0');
-          ui.algSecQuadWrap.innerHTML =
-            '<div>' + formatPlaneQuadratic(q.A, q.B, q.C, q.D, q.E, q.F) + '</div>' +
-            '<div>Δ = B²−4AC = ' + fmt(q.delta, 3) + ' (' + dRel + ') · λ₁=' + fmt(q.lam1, 2) + ', λ₂=' + fmt(q.lam2, 2) + '</div>';
-          ui.algSecReduced.textContent = s.canonicalEq;
-          ui.algSecProps.innerHTML = s.details.map(function (l) {
-            return '<div class="border-l-2 border-[#DCDCDC] pl-1.5">' + l + '</div>';
-          }).join('');
+          ui.liveDemoSteps.innerHTML = renderLiveAlgebraDemo(state, frame, activePlaneEq, activeNormal, activeD, activeSol, activeRaw);
 
           ui.title2D.textContent = s.name + " em (u′, v′)";
           ui.axes2DLabel.textContent = "u′, v′";
           ui.legend2D.textContent = s.type === 'hyperbola' ? 'A₁, A₂ · F₁, F₂ · Assíntotas · Diretrizes' : (s.type === 'parabola' ? 'Vértice V · Foco F · Diretriz' : 'Centro · Vértices · Focos');
-          draw2DCanvas({ branches: sol.branches, meta2D: s.meta2D, colorHex: s.color.hex });
+          draw2DCanvas({ branches: activeSol.branches, meta2D: s.meta2D, colorHex: s.color.hex });
         } else {
           var zDirV = frame.zeta0 + frame.gamma;
           var dirEq = isCircular
@@ -3163,9 +3528,9 @@
           ui.algSecClass.textContent = 'Diretriz (' + frame.zetaName + ' = ' + fmt(zDirV, 1) + ')';
           ui.algSecClass.style.color = TRACE_COLOR.hex;
           ui.algSecEcc.textContent = 'Plano Off';
-          ui.algSecQuadWrap.classList.add('hidden');
-          ui.algSecReduced.textContent = dirEq;
-          ui.algSecProps.innerHTML = '<div class="border-l-2 border-[#DCDCDC] pl-1.5">Semieixos: ' + frame.xiName + '→' + fmt(frame.alpha1,2) + ', ' + frame.etaName + '→' + fmt(frame.alpha2,2) + ' · e = ' + fmt(eccD, 3) + '</div>';
+          ui.liveDemoSteps.innerHTML =
+            '<div class="px-2 py-1.5 bg-[#F8F9FA] border border-[#ECEFF1] rounded-[2px] font-math text-[10.5px] text-[#202124]">' + dirEq + '</div>' +
+            '<div class="text-[10px] text-[#5F6368]">Ative o <strong>Plano (P)</strong> ou adicione um plano na Calculadora 3D (ex: <span class="font-math">x = 2</span>) para ver a demonstração passo a passo. Semieixos diretriz: ' + fmt(frame.alpha1,2) + ', ' + fmt(frame.alpha2,2) + ' (e=' + fmt(eccD,3) + ').</div>';
 
           var dPts = [];
           for (var id = 0; id < 128; id++) {
@@ -3183,10 +3548,20 @@
           ui.legend2D.textContent = isCircular ? 'Diretriz Circular · Centro C' : 'Diretriz Elíptica · Focos F₁, F₂';
           draw2DCanvas({ branches: [{ isPoint: false, closed: true, points2D: dPts }], meta2D: dMeta, colorHex: TRACE_COLOR.hex });
         }
+
+        // Atualiza Guia Didático dos 3 Casos (Winterle)
+        ui.gcaseBtns.forEach(function (btn) {
+          var act = btn.dataset.gcase === state.activeGuideCase;
+          btn.classList.toggle('bg-[#E8F0FE]', act);
+          btn.classList.toggle('text-[#1565C0]', act);
+          btn.classList.toggle('font-semibold', act);
+          btn.classList.toggle('text-[#5F6368]', !act);
+        });
+        ui.guideStepsBody.innerHTML = renderWinterleGuide(state, frame);
       }
 
       // =======================================================================
-      // 15. EVENTOS, POPOVER DE MODELOS, CÂMERA E ATALHOS
+      // 16. EVENTOS, POPOVER DE MODELOS, CÂMERA E ATALHOS
       // =======================================================================
       function setTab(name) {
         state.activeTab = name;
@@ -3233,9 +3608,43 @@
           if (p === 'circ')  { state.axis = 'z'; state.a = 1; state.b = 1; state.c = 1; state.x0 = 0; state.y0 = 0; state.z0 = 0; }
           if (p === 'ellip') { state.axis = 'z'; state.a = 1.5; state.b = 2.5; state.c = 1.5; state.x0 = 0; state.y0 = 0; state.z0 = 0; }
           if (p === 'axisy') { state.axis = 'y'; state.a = 1.5; state.b = 1.5; state.c = 2.2; state.x0 = 0; state.y0 = 0; state.z0 = 0; }
+          if (p === 'axisx') { state.axis = 'x'; state.a = 1.5; state.b = 2.0; state.c = 1.5; state.x0 = 0; state.y0 = 0; state.z0 = 0; }
           if (p === 'shift') { state.axis = 'z'; state.a = 1.5; state.b = 1.0; state.c = 1.2; state.x0 = 1.5; state.y0 = -1.0; state.z0 = 1.0; }
           updateAll();
         });
+      });
+
+      // Seletor de plano ativo para demonstração algébrica
+      ui.selectDemoPlane.addEventListener('change', function () {
+        var v = ui.selectDemoPlane.value;
+        state.demoPlaneSource = v === 'main' ? 'main' : parseInt(v, 10);
+        renderCalcListUI();
+        updateAll();
+      });
+
+      // Guia Didático Winterle (Elipse / Parábola / Hipérbole + Aplicar no 3D)
+      ui.gcaseBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.activeGuideCase = btn.dataset.gcase;
+          updateAll();
+        });
+      });
+
+      document.getElementById('btn-apply-guide').addEventListener('click', function () {
+        var fr = getLocalFrame(state);
+        state.demoPlaneSource = 'main';
+        state.planeActive = true;
+        state.phi = 0;
+        state.k = 2.0;
+        if (state.activeGuideCase === 'ellipse') {
+          state.theta = 0.0;
+        } else if (state.activeGuideCase === 'parabola') {
+          state.theta = computeThetaPDeg(fr.alpha1, fr.alpha2, fr.gamma, 0);
+        } else {
+          state.theta = 90.0;
+        }
+        renderCalcListUI();
+        updateAll();
       });
 
       function bindFreeNum(el, prop, posOnly, minV, maxV) {
@@ -3336,6 +3745,7 @@
           state.theta = radToDeg(Math.atan2(sH, clamp(nZeta, 0, 1)));
           state.phi = sH > 1e-7 ? radToDeg(Math.atan2(nEta, nXi)) : 0;
           state.k = kLoc;
+          state.planeRaw = { a: p.raw.a, b: p.raw.b, c: p.raw.c, d: p.raw.d, text: ui.inputPlaneEq.value.trim(), snap: planeSnap() };
           state.editingPlaneEq = false; ui.inputPlaneEq.blur();
           updateAll();
         } else if (e.key === 'Escape') { state.editingPlaneEq = false; ui.inputPlaneEq.blur(); updateAll(); }
@@ -3441,7 +3851,7 @@
       window.addEventListener('resize', handleResize);
 
       // =======================================================================
-      // 16. LOOP DE ANIMAÇÃO (INICIADO NO WINDOW.LOAD)
+      // 17. LOOP DE ANIMAÇÃO (INICIADO NO WINDOW.LOAD)
       // =======================================================================
       function animate() {
         requestAnimationFrame(animate);
